@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{6e561ae7-9ef3-4a27-9cad-403117ff9ef4}</ItemsProjectGuid>
+    <ItemsRootNamespace>CustomCx</ItemsRootNamespace>
+    <ItemsProjectName>CustomCx.Shared</ItemsProjectName>
+    <CodeSharingProject>248F659F-DAC5-46E8-AC09-60EC9FC95053</CodeSharingProject>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterCx.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+</Project>

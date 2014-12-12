@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="CustomFilter">
+      <UniqueIdentifier>{7f1a90d5-7170-4c54-9886-33471db8fa85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CustomEffect">
+      <UniqueIdentifier>{55b656a5-3ec4-4d09-a15c-ec0b7b2ed725}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp" />
+      <Filter>CustomEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.cpp">
+      <Filter>CustomFilter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterBase.h">
+      <Filter>CustomFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterCx.h">
+      <Filter>CustomFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.h">
+      <Filter>CustomFilter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.idl" />
+    <Midl Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.idl" />
+  </ItemGroup>
+</Project>

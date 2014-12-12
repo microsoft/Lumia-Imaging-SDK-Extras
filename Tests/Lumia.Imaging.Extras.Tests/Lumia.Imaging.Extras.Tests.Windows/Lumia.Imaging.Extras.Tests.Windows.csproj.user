@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+ 
+<!-- Managed only debugging:
+    <DebugEngines>{2E36F1D4-B23C-435D-AB41-18E608940038}</DebugEngines>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+-->
+ 
+<!-- Native only debugging:    
+    <DebugEngines>{3B476D35-A401-11D2-AAD4-00C04F990171}</DebugEngines> 
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+-->
+ 
+<!-- Mixed mode debugging: -->
+    <DebugEngines>{92EF0900-2251-11D2-B72E-0000F87572EF}</DebugEngines>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+ 
+</PropertyGroup>
+</Project>
+

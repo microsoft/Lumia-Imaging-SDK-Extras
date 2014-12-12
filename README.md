@@ -63,8 +63,8 @@ Allows adjustments of saturation and lightness around Master, Red, Green, Blue, 
 ####BufferExtensions
 - **AsBufferTask**: Conversion from Task&lt;IBuffer&gt; to a Lumia Imaging SDK IBufferProvider that can be passed into a BufferProviderImageSource. This can be useful to avoid having to await the task-of-buffer before setting up an image source.
 
-####MaybeTask
-Value type that either holds a result **or** a task-of-result. This helps many app scenarios, keeping Task-proliferation and GC pressure in check when dealing with mixed sync/async operations.
+####MaybeTask&lt;T&gt;
+Value type that either holds a result **or** a task-of-result. This helps interactive app scenarios, keeping GC activity in check when dealing with mixed sync/async operations, as otherwise each new Task causes a heap allocation.
 
 
 ---

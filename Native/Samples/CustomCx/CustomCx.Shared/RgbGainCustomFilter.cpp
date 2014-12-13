@@ -70,9 +70,17 @@ void RgbGainCustomFilter::OnProcessBlock(
 
 	sourcePixels += blockParameters->SourceStartIndex;
 
-	for(int y = 0; y < blockParameters->Height; ++y)
+	// Making local copies of block width and block height here
+	// helps the auto-vectorizer in VS 2013 prove that they are
+	// loop-invariant.
+	const int blockWidth = blockParameters->Width;
+	const int blockHeight = blockParameters->Height;
+
+	// Should not be vectorized due to reason '1106' (outer loops aren't vectorized). Check Output window.
+	for(int y = 0; y < blockHeight; ++y)
 	{
-		for(int x = 0; x < blockParameters->Width; ++x)
+		// Should be vectorized. Check Output window.
+		for(int x = 0; x < blockWidth; ++x)
 		{
 			uint32 pixel = sourcePixels[x];
 

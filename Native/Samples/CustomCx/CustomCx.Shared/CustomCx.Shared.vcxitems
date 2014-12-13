@@ -27,7 +27,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp">
+      <AdditionalOptions>/Qvec-report:2 /bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectCapability Include="SourceItemsFromImports" />

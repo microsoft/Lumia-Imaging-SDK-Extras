@@ -129,6 +129,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\..\..\..\Include;$(ProjectDir)\..\..\..\CustomFilter;$(ProjectDir)\..\..\..\CustomEffect;$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -204,6 +205,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\..\..\..\Include;$(ProjectDir)\..\..\..\CustomFilter;$(ProjectDir)\..\..\..\CustomEffect;$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -217,6 +219,11 @@
       <Command>mdmerge -metadata_dir "$(WindowsSDK_MetadataPath)" -metadata_dir "$(MSBuildProjectDirectory)\..\..\..\Include" -o "$(SolutionDir)BuildOutput\$(PlatformTarget)\$(Configuration)\$(ProjectName)" -i "$(SolutionDir)BuildIntermediate\$(PlatformTarget)\$(Configuration)\$(ProjectName)" -v -partial</Command>
       <Outputs>$(SolutionDir)BuildOutput\$(PlatformTarget)\$(Configuration)\$(ProjectName)\$(TargetName).winmd</Outputs>
     </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

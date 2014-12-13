@@ -157,6 +157,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\..\..\..\Include;$(ProjectDir)\..\..\..\CustomFilter;$(ProjectDir)\..\..\..\CustomEffect;$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -232,6 +233,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\..\..\..\Include;$(ProjectDir)\..\..\..\CustomFilter;$(ProjectDir)\..\..\..\CustomEffect;$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -282,6 +284,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\..\..\..\Include;$(ProjectDir)\..\..\..\CustomFilter;$(ProjectDir)\..\..\..\CustomEffect;$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_MetadataPath);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

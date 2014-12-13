@@ -1,31 +1,12 @@
-/*
-* Copyright (c) 2014 Microsoft Mobile
-* 
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-* 
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-* THE SOFTWARE.
-*/
+
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Tue Dec 09 14:28:34 2014
+/* at Fri Dec 12 18:40:15 2014
  */
-/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Custom.idl-c341625d:
+/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Custom.idl-0f1baab4:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
@@ -2524,6 +2505,10 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFact
                     ICustomFilterAdapterFactory : public IInspectable
                     {
                     public:
+                        virtual HRESULT STDMETHODCALLTYPE Create2( 
+                            /* [in] */ __RPC__in_opt ABI::Lumia::Imaging::Custom::ICustomFilter2 *customFilter,
+                            /* [out][retval] */ __RPC__deref_out_opt ABI::Lumia::Imaging::Custom::ICustomFilterAdapter **__returnValue) = 0;
+                        
                         virtual HRESULT STDMETHODCALLTYPE Create( 
                             /* [in] */ __RPC__in_opt ABI::Lumia::Imaging::Custom::ICustomFilter *customFilter,
                             /* [out][retval] */ __RPC__deref_out_opt ABI::Lumia::Imaging::Custom::ICustomFilterAdapter **__returnValue) = 0;
@@ -2570,6 +2555,11 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFact
             __RPC__in __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFactory * This,
             /* [out] */ __RPC__out TrustLevel *trustLevel);
         
+        HRESULT ( STDMETHODCALLTYPE *Create2 )( 
+            __RPC__in __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFactory * This,
+            /* [in] */ __RPC__in_opt __x_ABI_CLumia_CImaging_CCustom_CICustomFilter2 *customFilter,
+            /* [out][retval] */ __RPC__deref_out_opt __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapter **__returnValue);
+        
         HRESULT ( STDMETHODCALLTYPE *Create )( 
             __RPC__in __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFactory * This,
             /* [in] */ __RPC__in_opt __x_ABI_CLumia_CImaging_CCustom_CICustomFilter *customFilter,
@@ -2607,6 +2597,9 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFact
 #define __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFactory_GetTrustLevel(This,trustLevel)	\
     ( (This)->lpVtbl -> GetTrustLevel(This,trustLevel) ) 
 
+
+#define __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFactory_Create2(This,customFilter,__returnValue)	\
+    ( (This)->lpVtbl -> Create2(This,customFilter,__returnValue) ) 
 
 #define __x_ABI_CLumia_CImaging_CCustom_CICustomFilterAdapterFactory_Create(This,customFilter,__returnValue)	\
     ( (This)->lpVtbl -> Create(This,customFilter,__returnValue) ) 

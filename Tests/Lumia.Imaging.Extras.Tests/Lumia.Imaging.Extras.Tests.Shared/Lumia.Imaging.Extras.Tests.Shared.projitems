@@ -9,7 +9,6 @@
     <Import_RootNamespace>Lumia.Imaging.Extras.Tests.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomEffectsWRLTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomFiltersCxTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomFiltersWRLTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\EllipticFocusDepthOfFieldEffectTest.cs" />
@@ -22,6 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\LensTiltFocusGradientGeneratorTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\MockKernelGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\PreviewQualityKernelGeneratorTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\BitmapExtensionsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\BufferExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DotVisualizationExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileUtilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownImage.cs" />

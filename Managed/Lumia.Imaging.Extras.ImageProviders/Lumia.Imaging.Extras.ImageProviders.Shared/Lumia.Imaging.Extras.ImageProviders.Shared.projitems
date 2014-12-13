@@ -9,24 +9,24 @@
     <Import_RootNamespace>Lumia.Imaging.Extras.ImageProviders.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\ChangeTracker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\DepthOfFieldEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\DepthOfFieldQuality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\EllipticFocusDepthOfFieldEffect.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\EllipticFocusGradientGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\FocusBand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\FocusBandDepthOfFieldEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\FocusEllipse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\FocusGradientGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\FocusObjectDepthOfFieldEffect.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\FocusObjectKernelMapGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\GradientLine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\HighQualityKernelGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\IndexRemappingEffect.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\KernelGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\ChangeTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\EllipticFocusGradientGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\FocusGradientGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\FocusObjectKernelMapGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\GradientLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\GroupChangeTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\IChangeTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\IndexRemappingEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\KernelBand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\KernelGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\Internal\LensTiltFocusGradientGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\LensTiltDepthOfFieldEffect.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\LensTiltFocusGradientGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DepthOfField\PreviewQualityKernelGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HighpassEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HslAdjustmentEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NoiseImageSource.cs" />

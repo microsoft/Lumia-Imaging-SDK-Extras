@@ -1,6 +1,31 @@
-﻿using Lumia.Imaging.Adjustments;
+﻿/*
+* Copyright (c) 2014 Microsoft Mobile
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+*/
+
+using Lumia.Imaging;
+using Lumia.Imaging.Adjustments;
 using System;
+using System.Linq;
 using Windows.Foundation;
+using Lumia.Imaging.Extras.Effects.DepthOfField.Internal;
+using System.Diagnostics;
 
 namespace Lumia.Imaging.Extras.Effects.DepthOfField
 {
@@ -8,13 +33,11 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField
 	/// A depth-of-field effect that creates the illusion of a photograph taken using lens tilt by way of letting the user specify a band representing the focus area in the image. 
 	/// In high quality mode, the blurring of the background gets progressively stronger outward from this band.
 	/// </summary>
-	public class LensTiltDepthOfFieldEffect : FocusBandDepthOfFieldEffect
+	public class LensTiltDepthOfFieldEffect : DepthOfFieldEffect
 	{
 		private readonly ChangeTracker<FocusBand> m_focusBand = new ChangeTracker<FocusBand>();
-		private readonly ChangeTracker<double> m_strengthAtEdge1 = new ChangeTracker<double>();
-		private readonly ChangeTracker<double> m_strengthAtEdge2 = new ChangeTracker<double>();
-		private KernelGenerator m_edge1KernelGenerator = null;
-		private KernelGenerator m_edge2KernelGenerator = null;
+		private KernelGenerator m_edge1KernelGenerator = new KernelGenerator();
+		private KernelGenerator m_edge2KernelGenerator = new KernelGenerator();
 
 		/// <summary>
 		/// Creates and initializes a new lens tilt depth-of-field effect.
@@ -33,7 +56,11 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField
 		}
 		public FocusBand FocusBand
 		{
-			get { return m_focusBand.Value; }
+			get
+			{
+				return m_focusBand.Value;
+			}
+
 			set
 			{
 				m_focusBand.Value = value;
@@ -42,56 +69,70 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField
 
 		public double StrengthAtEdge1
 		{
-			get { return m_strengthAtEdge1.Value; }
+			get
+			{
+				return m_edge1KernelGenerator.Strength;
+			}
+
 			set
 			{
-				m_strengthAtEdge1.Value = value;
+				m_edge1KernelGenerator.Strength = value;
 			}
 		}
 
 		public double StrengthAtEdge2
 		{
-			get { return m_strengthAtEdge2.Value; }
+			get
+			{
+				return m_edge2KernelGenerator.Strength;
+			}
+
 			set
 			{
-				m_strengthAtEdge2.Value = value;
+				m_edge2KernelGenerator.Strength = value;
 			}
 		}
 
-		protected override void SetUp()
+		protected override bool TryPrepareLensBlurProperties()
 		{
-			if (IsDirty || m_strengthAtEdge1.IsDirty || m_strengthAtEdge2.IsDirty)
+			var kernelCount = Quality == DepthOfFieldQuality.Full ? 5 : 1;
+			m_edge1KernelGenerator.KernelCount = kernelCount;
+			m_edge2KernelGenerator.KernelCount = kernelCount;
+
+			var sourceSize = GetSourceSize();
+			m_edge1KernelGenerator.SourceSize = sourceSize;
+			m_edge2KernelGenerator.SourceSize = sourceSize;
+
+			var kernels = LensBlurEffect.Kernels;
+
+			var kernelGeneratorsAreDirty = m_edge1KernelGenerator.IsDirty || m_edge2KernelGenerator.IsDirty;
+
+            var kernelBands = m_edge2KernelGenerator.GetKernelBands(m_edge1KernelGenerator.GetKernelBands());
+            bool blurShouldBeApplied = kernelBands.Count > 0;
+
+			if (IsDirty || kernelGeneratorsAreDirty)
 			{
-				var sourceSize = GetSourceSize();
-				m_edge1KernelGenerator = Quality == DepthOfFieldQuality.Full
-					? (KernelGenerator)new HighQualityKernelGenerator(sourceSize, m_strengthAtEdge1.Value)
-					: (KernelGenerator)new PreviewQualityKernelGenerator(sourceSize, m_strengthAtEdge1.Value);
+				kernels = kernelBands.Select(band => band.Kernel).ToList();
 
-				m_edge2KernelGenerator = Quality == DepthOfFieldQuality.Full
-					? (KernelGenerator)new HighQualityKernelGenerator(sourceSize, m_strengthAtEdge2.Value)
-					: (KernelGenerator)new PreviewQualityKernelGenerator(sourceSize, m_strengthAtEdge2.Value);
-
-                var kernels = Concatenate(m_edge1KernelGenerator.GetKernels(), m_edge2KernelGenerator.GetKernels());
-
-                if (kernels.Count < 1)
-                    throw new ArgumentOutOfRangeException("No blur required");
-
-                LensBlurEffect.Kernels = kernels;
+				if (kernels.Count > 0)
+				{
+					LensBlurEffect.Kernels = kernels;
+				    blurShouldBeApplied = true;
+				}
 			}
-
-			if (IsDirty || m_strengthAtEdge1.IsDirty || m_strengthAtEdge2.IsDirty || m_focusBand.IsDirty)
+            
+			if (blurShouldBeApplied && (IsDirty || kernelGeneratorsAreDirty || m_focusBand.IsDirty))
 			{
-				var sourceSize = GetSourceSize();
 				var gradient = LensTiltFocusGradientGenerator.GenerateGradient(FocusBand, sourceSize, m_edge1KernelGenerator, m_edge2KernelGenerator, false);
-				MaskSource = new GradientImageSource(GetKernelMapSize(), gradient);
-			}
+				KernelMapSource = new GradientImageSource(GetKernelMapSize(), gradient);
 
-			LensBlurEffect.KernelMapType = LensBlurKernelMapType.Continuous;
-			LensBlurEffect.FocusAreaEdgeMirroring = LensBlurFocusAreaEdgeMirroring.Off;
+				LensBlurEffect.KernelMapType = LensBlurKernelMapType.Continuous;
+				LensBlurEffect.FocusAreaEdgeMirroring = LensBlurFocusAreaEdgeMirroring.Off;
+			}
 
 			m_focusBand.Reset();
-			m_strengthAtEdge1.Reset();
-			m_strengthAtEdge2.Reset();
+
+			return blurShouldBeApplied;
 		}
 
 		private Size GetKernelMapSize()
@@ -100,5 +141,6 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField
 
 			return new Size(sourceSize.Width / 2, sourceSize.Height / 2);
 		}
+
 	}
 }

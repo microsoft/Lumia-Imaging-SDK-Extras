@@ -19,36 +19,41 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging.Adjustments;
-using Lumia.Imaging.Extras.Effects.DepthOfField;
-using Lumia.Imaging.Extras.Effects.DepthOfField.Internal;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System.Collections.Generic;
-using System.Linq;
-using Windows.Foundation;
+using Lumia.Imaging;
+using Lumia.Imaging.Custom;
 
-namespace Lumia.Imaging.Extras.Tests.Effects.DepthOfField
+namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 {
-	[TestClass]
-	public class GradientLineTest
+	class IndexRemappingEffect : CustomEffectBase
 	{
+		uint m_whiteThreshold;
 
-		[TestMethod]
-		public void Test1()
+		public IndexRemappingEffect(IImageProvider source, int whiteThreshold)
+			: base(source, false)
 		{
-			var gradientLine1 = new GradientLine(new FocusBand(new Point(0.5, 0.1), new Point(0.5, 0.9)));
-			var p1_0 = gradientLine1.PointFromX(0);
-			var p1_1 = gradientLine1.PointFromX(1);
+			m_whiteThreshold = (uint)whiteThreshold;
+		}
 
-			var gradientLine2 = new GradientLine(new FocusBand(new Point(0.5, 0.1), new Point(0.5, 0.9)));
-			var p2_0 = gradientLine2.PointFromX(0);
-			var p2_1 = gradientLine2.PointFromX(1);
+		protected override void OnProcess(PixelRegion sourcePixelRegion, PixelRegion targetPixelRegion)
+		{
+			for (int i = 0; i < sourcePixelRegion.ImagePixels.Length; i++)
+			{
+				uint newPixelValue = 0;
 
-			Assert.AreEqual(p1_0.X, p2_0.X, 0.01);
-			Assert.AreEqual(p1_0.Y, p2_0.Y, 0.01);
+				for (int j = 0; j < 3; j++)
+				{
+					uint pixelValue = (sourcePixelRegion.ImagePixels[i] & (255u << (8 * j))) >> (8 * j);
 
-			Assert.AreEqual(p1_1.X, p2_1.X, 0.01);
-			Assert.AreEqual(p1_1.Y, p2_1.Y, 0.01);
+					if (pixelValue > m_whiteThreshold)
+					{
+						pixelValue = 0;
+					}
+
+					newPixelValue += pixelValue << (8 * j);
+				}
+
+				targetPixelRegion.ImagePixels[i] = newPixelValue + (255u << 24);
+			}
 		}
 	}
 }

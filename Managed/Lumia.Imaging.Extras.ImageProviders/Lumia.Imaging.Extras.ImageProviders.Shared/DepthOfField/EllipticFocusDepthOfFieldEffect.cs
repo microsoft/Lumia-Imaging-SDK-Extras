@@ -1,5 +1,26 @@
-﻿using Lumia.Imaging.Adjustments;
-using System;
+﻿/*
+* Copyright (c) 2014 Microsoft Mobile
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+*/
+
+using Lumia.Imaging.Adjustments;
+using Lumia.Imaging.Extras.Effects.DepthOfField.Internal;
 using System.Linq;
 using Windows.Foundation;
 
@@ -13,6 +34,7 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField
 
 		private readonly ChangeTracker<FocusEllipse> m_focusArea = new ChangeTracker<FocusEllipse>();
 		private readonly ChangeTracker<double> m_strength = new ChangeTracker<double>();
+		KernelGenerator m_kernelGenerator = new KernelGenerator();
 
 		/// <summary>
 		/// Creates and initializes a new elliptic focus depth-of-field effect.
@@ -46,36 +68,43 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField
 			}
 		}
 
-		protected override void SetUp()
+		protected override bool TryPrepareLensBlurProperties()
 		{
-			KernelGenerator kernelGenerator = null;
+			m_kernelGenerator.KernelCount = (Quality == DepthOfFieldQuality.Preview)
+				? 1
+				: 5;
 
-			if (IsDirty || m_focusArea.IsDirty || m_strength.IsDirty)
+			m_kernelGenerator.SourceSize = GetSourceSize();
+			m_kernelGenerator.Strength = Strength;
+
+            var kernelGeneratorIsDirty = m_kernelGenerator.IsDirty;
+            var kernelBands = m_kernelGenerator.GetKernelBands();
+            bool blurShouldBeApplied = kernelBands.Count > 0;
+
+            if (IsDirty || m_focusArea.IsDirty || kernelGeneratorIsDirty)
 			{
-				kernelGenerator = (Quality == DepthOfFieldQuality.Preview)
-					? (KernelGenerator)new PreviewQualityKernelGenerator(GetSourceSize(), Strength)
-					: (KernelGenerator)new HighQualityKernelGenerator(GetSourceSize(), Strength);
+				if (kernelBands.Count > 0)
+				{
 
-				MaskSource = new GradientImageSource(GetKernelMapSize(), EllipticFocusGradientGenerator.GenerateGradient(m_focusArea.Value, kernelGenerator));
-			}
+					var gradient = EllipticFocusGradientGenerator.GenerateGradient(m_focusArea.Value, m_kernelGenerator);
+					KernelMapSource = new GradientImageSource(GetKernelMapSize(), gradient);
 
+					if (IsDirty || m_strength.IsDirty)
+					{
 
-			if (IsDirty || m_strength.IsDirty)
-			{
-				var kernels = kernelGenerator.GetKernels();;
-                
-                if (kernels.Count < 1)
-                    throw new ArgumentOutOfRangeException("No blur required");
+						LensBlurEffect.Kernels = kernelBands.Select(band => band.Kernel).ToList();
 
-                LensBlurEffect.Kernels = kernels;
-
-				LensBlurEffect.BlendKernelWidth = LensBlurEffect.Kernels.Max(w => w.Size) / 2;
-				LensBlurEffect.KernelMapType = LensBlurKernelMapType.Continuous;
-				LensBlurEffect.FocusAreaEdgeMirroring = LensBlurFocusAreaEdgeMirroring.Off;
+						LensBlurEffect.BlendKernelWidth = LensBlurEffect.Kernels.Max(w => w.Size) / 2;
+						LensBlurEffect.KernelMapType = LensBlurKernelMapType.Continuous;
+						LensBlurEffect.FocusAreaEdgeMirroring = LensBlurFocusAreaEdgeMirroring.Off;
+					}
+				}
 			}
 
 			m_strength.Reset();
 			m_focusArea.Reset();
+
+			return blurShouldBeApplied;
 		}
 
 		private Size GetKernelMapSize()

@@ -51,7 +51,7 @@ namespace Lumia.Imaging.Extras.Tests.Effects.DepthOfField
 				buffer = await renderer.RenderAsync();
 				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CFace_FocusObjectDoF_Mask.jpg");
 
-				renderer.Source = depthOfFieldEffect.MaskSource;
+				renderer.Source = depthOfFieldEffect.ObjectMaskSource;
 				buffer = await renderer.RenderAsync();
 				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CFace_FocusObjectDoF_KernelMap.jpg");
 			}

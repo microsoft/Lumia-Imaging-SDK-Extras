@@ -14,15 +14,20 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCx.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCxBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterCx.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCxBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

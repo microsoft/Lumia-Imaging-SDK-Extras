@@ -13,6 +13,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.h">
       <Filter>CustomFilter</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCx.h">
+      <Filter>CustomEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCxBuffer.h">
+      <Filter>CustomEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
@@ -22,6 +29,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.cpp">
       <Filter>CustomFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCxBuffer.cpp">
+      <Filter>CustomEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

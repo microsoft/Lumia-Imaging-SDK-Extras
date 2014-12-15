@@ -81,6 +81,7 @@ namespace ABI { namespace Lumia { namespace Imaging { namespace Extras {
 	template<typename TImplementation, typename TDefaultInterface>
 	class CustomFilterBase abstract : public Microsoft::WRL::RuntimeClass<
 		Microsoft::WRL::RuntimeClassFlags<Microsoft::WRL::WinRt>,
+		Microsoft::WRL::FtmBase,
 #ifndef __cplusplus_winrt
 		IFilter,
 		TDefaultInterface,

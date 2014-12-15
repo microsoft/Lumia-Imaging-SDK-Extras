@@ -19,95 +19,82 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging.Extras.Effects.DepthOfField;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Lumia.Imaging;
+using Lumia.Imaging.Extras.Effects.DepthOfField;
 using Windows.Foundation;
-using Windows.UI;
-using Lumia.Imaging.Transforms;
+using System.Runtime.CompilerServices;
 
-namespace Lumia.Imaging.Extras.Tests.Effects.DepthOfField
+namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 {
-
-	[TestClass]
-	public class LensTiltDepthOfFieldEffectTest
-	{
-
-		[TestMethod]
-		public async Task RenderStrength1()
-		{
-			using (var source = await KnownImages.CPH.GetImageSourceAsync())
-            using (var effect = new LensTiltDepthOfFieldEffect(source, new FocusBand(new Point(0.5, 0.4), new Point(0.5, 0.6)), 1.0, 1.0, DepthOfFieldQuality.Full) { StrengthAtEdge1 = 1.0, StrengthAtEdge2 = 1.0 })
-			using (var renderer = new JpegRenderer(effect))
-			{
-				var buffer = await renderer.RenderAsync();
-				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CPH_LensTiltFocus_1.jpg");
-
-			}
-		}
+    [TestClass]
+    public class LensTiltDepthOfFieldEffectTest
+    {
+        private readonly FocusBand VerticalBand = new FocusBand(new Point(0.4, 0.5), new Point(0.6, 0.5));
+        private readonly FocusBand HorizontalBand = new FocusBand(new Point(0.5, 0.4), new Point(0.5, 0.6));
+        private readonly FocusBand A45Band = new FocusBand(new Point(0.4, 0.4), new Point(0.6, 0.6));
+        private readonly FocusBand A135Band = new FocusBand(new Point(0.6, 0.4), new Point(0.4, 0.6));
 
         [TestMethod]
-        public async Task RenderVariousStrengths()
+        public async Task RenderVerticalTiltPreviewImage()
         {
-            using (var source = /* new ColorImageSource(new Size(3072, 1728), Color.FromArgb(255, 1, 1, 1))) */ await KnownImages.CPH.GetImageSourceAsync())
-            using (var effect = new LensTiltDepthOfFieldEffect(source, new FocusBand(new Point(0.5, 0.4), new Point(0.5, 0.6)), 1.0, 1.0, DepthOfFieldQuality.Full))
-            using (var renderer = new JpegRenderer(effect))
-            {
-                foreach (var strength1 in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                    foreach (var strength2 in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                {
-                    effect.StrengthAtEdge1 = strength1;
-                    effect.StrengthAtEdge2 = strength2;
-                    var buffer = await renderer.RenderAsync();
-                    await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CPH_LensTiltFocus_{0}_{1}.jpg", effect.StrengthAtEdge1, effect.StrengthAtEdge2));
-                }
-
-            }
+            await RenderEffect(VerticalBand, DepthOfFieldQuality.Preview);
         }
 
         [TestMethod]
-        public async Task RenderVariousStrengthsAndScales()
+        public async Task RenderVerticalTiltFullQualityImage()
         {
-            using (var source = /* new ColorImageSource(new Size(3072, 1728), Color.FromArgb(255, 1, 1, 1))) */ await KnownImages.CPH.GetImageSourceAsync())
-            using (var filterEffect = new FilterEffect(source))
-            using (var effect = new LensTiltDepthOfFieldEffect(source, new FocusBand(new Point(0.5, 0.4), new Point(0.5, 0.6)), 1.0, 1.0, DepthOfFieldQuality.Full))
-            using (var renderer = new JpegRenderer(effect))
-            {
-                foreach (var scale in new double[] { 1.0, 0.5, 0.2 })
-                {
-                    foreach (var strength1 in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                        foreach (var strength2 in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                    {
-                        filterEffect.Filters = new[] { new ScaleFilter(scale) };
-                        effect.StrengthAtEdge1 = strength1;
-                        effect.StrengthAtEdge2 = strength2;
-                        var buffer = await renderer.RenderAsync();
-                        await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CPH_LensTiltFocus_{0}_{1}_{2}.jpg", scale, strength1, strength2));
-                    }
-                }
-
-            }
+            await RenderEffect(VerticalBand, DepthOfFieldQuality.Full);
         }
 
         [TestMethod]
-        public async Task RenderPreviewAtVariousStrengths()
+        public async Task RenderHorizontalTiltPreviewImage()
         {
-            using (var source = await KnownImages.CPH.GetImageSourceAsync())
-            using (var effect = new LensTiltDepthOfFieldEffect(source, new FocusBand(new Point(0.5, 0.4), new Point(0.5, 0.6)), 1.0, 1.0, DepthOfFieldQuality.Full))
-            using (var renderer = new JpegRenderer(effect))
-            {
-                foreach (var strength1 in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                    foreach (var strength2 in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                {
-                    effect.StrengthAtEdge1 = strength1;
-                    effect.StrengthAtEdge2 = strength2;
-                    var buffer = await renderer.RenderAsync();
-                    await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CPH_LensTiltFocus_Preview_{0}_{1}.jpg", effect.StrengthAtEdge1, effect.StrengthAtEdge2));
-                }
-
-            }
+            await RenderEffect(HorizontalBand, DepthOfFieldQuality.Preview);
         }
 
-	}
+        [TestMethod]
+        public async Task RenderHorizontalTiltFullQualityImage()
+        {
+            await RenderEffect(HorizontalBand, DepthOfFieldQuality.Full);
+        }
+
+        [TestMethod]
+        public async Task RenderA45TiltPreviewImage()
+        {
+            await RenderEffect(A45Band, DepthOfFieldQuality.Preview);
+        }
+
+        [TestMethod]
+        public async Task RenderA45TiltFullQualityImage()
+        {
+            await RenderEffect(A45Band, DepthOfFieldQuality.Full);
+        }
+
+        [TestMethod]
+        public async Task RenderA135TiltPreviewImage()
+        {
+            await RenderEffect(A135Band, DepthOfFieldQuality.Preview);
+        }
+
+        [TestMethod]
+        public async Task RenderA135TiltFullQualityImage()
+        {
+            await RenderEffect(A135Band, DepthOfFieldQuality.Full);
+        }
+
+        private static async Task RenderEffect(FocusBand focusBand, DepthOfFieldQuality quality, [CallerMemberName] string testName = "")
+        {
+            using (var source = await KnownImages.CFace.GetImageSourceAsync())
+            using (var effect = new LensTiltDepthOfFieldEffect(source, focusBand, 1.0, 1.0, quality))
+            using (var renderer = new JpegRenderer(effect))
+            {
+                var buffer = await renderer.RenderAsync();
+
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "LensTiltDepthOfFieldEffectTest_" + testName + ".jpg");
+            }
+        }
+    }
 }

@@ -19,89 +19,42 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging.Extras.Effects.DepthOfField;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Lumia.Imaging;
+using Lumia.Imaging.Extras.Effects.DepthOfField;
 using Windows.Foundation;
-using Windows.UI;
-using Lumia.Imaging.Transforms;
 
-namespace Lumia.Imaging.Extras.Tests.Effects.DepthOfField
+namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 {
+    [TestClass]
+    public class EllipticFocusDepthOfFieldEffectTest
+    {
+        [TestMethod]
+        public async Task RenderPreviewImage()
+        {
+            using (var source = await KnownImages.CFace.GetImageSourceAsync())
+            using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Preview))
+            using (var renderer = new JpegRenderer(effect))
+            {
+                var buffer = await renderer.RenderAsync();
+                
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_Preview.jpg");
+            }
+        }
 
-	[TestClass]
-	public class EllipticFocusDepthOfFieldEffectTest
-	{
+        [TestMethod]
+        public async Task RenderFullQualityImage()
+        {
+            using (var source = await KnownImages.CFace.GetImageSourceAsync())
+            using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Full))
+            using (var renderer = new JpegRenderer(effect))
+            {
+                var buffer = await renderer.RenderAsync();
 
-		[TestMethod]
-		public async Task RenderStrength1()
-		{
-			using (var source = await KnownImages.CPH.GetImageSourceAsync())
-			using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(1640.0 / 3072.0, 615.0 / 1728.0, 200.0 / 3072.0, 200.0 / 1728.0), 1.0, DepthOfFieldQuality.Full))
-			using (var renderer = new JpegRenderer(effect))
-			{
-				var buffer = await renderer.RenderAsync();
-				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CPH_EllipticFocus_1.jpg");
-
-			}
-		}
-
-		[TestMethod]
-		public async Task RenderVariousStrengths()
-		{
-			using (var source = /* new ColorImageSource(new Size(3072, 1728), Color.FromArgb(255, 1, 1, 1))) */ await KnownImages.CPH.GetImageSourceAsync())
-			using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(1640.0 / 3072.0, 615.0 / 1728.0, 200.0 / 3072.0, 200.0 / 1728.0), 1.0, DepthOfFieldQuality.Full) { Strength = 0.1 })
-			using (var renderer = new JpegRenderer(effect))
-			{
-                foreach (var strength in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-				{
-					effect.Strength = strength;
-					var buffer = await renderer.RenderAsync();
-					await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CPH_EllipticFocus_{0}.jpg", effect.Strength));
-				}
-
-			}
-		}
-
-		[TestMethod]
-		public async Task RenderVariousStrengthsAndScales()
-		{
-			using (var source = /* new ColorImageSource(new Size(3072, 1728), Color.FromArgb(255, 1, 1, 1))) */ await KnownImages.CPH.GetImageSourceAsync())
-			using (var filterEffect = new FilterEffect(source))
-			using (var depthOfFieldEffect = new EllipticFocusDepthOfFieldEffect(filterEffect, new FocusEllipse(1640.0 / 3072.0, 615.0 / 1728.0, 200.0 / 3072.0, 200.0 / 1728.0), 1.0, DepthOfFieldQuality.Full) { Strength = 0.1 })
-			using (var renderer = new JpegRenderer(depthOfFieldEffect))
-			{
-				foreach (var scale in new double[] { 1.0, 0.5, 0.2 })
-				{
-                    foreach (var strength in new double[] { /* 0.01, 0.05, */ /* 0.1, 0.2, 0.5, 0.75, 1.0 */ 0.0, 0.25, 0.5, 0.75, 1.0 })
-					{
-						filterEffect.Filters = new[] { new ScaleFilter(scale) };
-						depthOfFieldEffect.Strength = strength;
-						var buffer = await renderer.RenderAsync();
-						await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CPH_EllipticFocus_{0}_{1}.jpg", scale, strength));
-					}
-				}
-
-			}
-		}
-
-		[TestMethod]
-		public async Task RenderPreviewAtVariousStrengths()
-		{
-			using (var source = await KnownImages.CPH.GetImageSourceAsync())
-			using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(1640.0 / 3072.0, 615.0 / 1728.0, 200.0 / 3072.0, 200.0 / 1728.0), 1.0, DepthOfFieldQuality.Preview) { Strength = 0.1 })
-			using (var renderer = new JpegRenderer(effect))
-			{
-                foreach (var strength in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-				{
-					effect.Strength = strength;
-					var buffer = await renderer.RenderAsync();
-					await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CPH_EllipticFocus_Preview_{0}.jpg", effect.Strength));
-				}
-
-			}
-		}
-
-	}
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_Full.jpg");
+            }
+        }
+    }
 }

@@ -9,18 +9,12 @@
     <Import_RootNamespace>Lumia.Imaging.Extras.Tests.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomEffectsCxTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomFiltersCxTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomFiltersWRLTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\EllipticFocusDepthOfFieldEffectTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\EllipticFocusGradientGeneratorTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\FocusObjectDepthOfFieldEffectTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\FocusObjectKernelMapGeneratorTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\GradientLineTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\HighQualityKernelGeneratorTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\LensTiltDepthOfFieldEffectTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\LensTiltFocusGradientGeneratorTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\MockKernelGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\PreviewQualityKernelGeneratorTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BufferExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DotVisualizationExtensionsTests.cs" />

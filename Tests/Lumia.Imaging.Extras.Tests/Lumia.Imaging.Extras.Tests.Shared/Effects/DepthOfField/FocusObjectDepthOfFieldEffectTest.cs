@@ -19,111 +19,49 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging.Extras.Effects.DepthOfField;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System.Threading.Tasks;
 using System;
-using Windows.Foundation;
-using Windows.UI;
-using Lumia.Imaging.Transforms;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Lumia.Imaging;
 using Lumia.Imaging.Compositing;
+using Windows.UI;
+using Lumia.Imaging.Extras.Effects.DepthOfField;
+using Windows.Foundation;
+using System.Runtime.CompilerServices;
 
-namespace Lumia.Imaging.Extras.Tests.Effects.DepthOfField
+namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 {
-
-	[TestClass]
-	public class FocusObjectDepthOfFieldEffectTest
-	{
-
-		[TestMethod]
-		public async Task RenderStrength1()
-		{
-			using (var source = await KnownImages.CFace.GetImageSourceAsync())
-			using (var objectScribbles = await KnownImages.CFaceScribble.GetImageSourceAsync())
-			using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 238, 50), objectScribbles))
-			using (var depthOfFieldEffect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0.5), new Point(1, 0.5), 1.0, 1.0, DepthOfFieldQuality.Full))
-			using (var renderer = new JpegRenderer(depthOfFieldEffect))
-			{
-				var buffer = await renderer.RenderAsync();
-				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CFace_FocusObjectDoF.jpg");
-
-				renderer.Source = segmenter;
-				buffer = await renderer.RenderAsync();
-				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CFace_FocusObjectDoF_Mask.jpg");
-
-				renderer.Source = depthOfFieldEffect.ObjectMaskSource;
-				buffer = await renderer.RenderAsync();
-				await FileUtilities.SaveToPicturesLibraryAsync(buffer, "CFace_FocusObjectDoF_KernelMap.jpg");
-			}
-		}
-
+    [TestClass]
+    public class FocusObjectDepthOfFieldEffectTest
+    {
         [TestMethod]
-        public async Task RenderVariousStrengths()
+        public async Task RenderPreviewImage()
         {
             using (var source = await KnownImages.CFace.GetImageSourceAsync())
-            using (var objectScribbles = await KnownImages.CFaceScribble.GetImageSourceAsync())
-            using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 238, 50), objectScribbles))
-            using (var depthOfFieldEffect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0), new Point(1, 0), 1.0, 1.0, DepthOfFieldQuality.Full))
-            using (var renderer = new JpegRenderer(depthOfFieldEffect))
+            using (var annotations = await KnownImages.CFaceScribble.GetImageSourceAsync())
+            using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 238, 50), annotations))
+            using (var effect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0.8), new Point(1, 0.8), 1.0, 1.0, DepthOfFieldQuality.Preview))
+            using (var renderer = new JpegRenderer(effect))
             {
-                foreach (var strengthAbove in new double[] { /* 0.01, 0.05, */ 0.0/*, 0.1, 0.2, 0.5*/, 0.75, 1.0 })
-                    foreach (var strengthBelow in new double[] { /* 0.01, 0.05, */ 0.0/*, 0.1, 0.2, 0.5*/, 0.75, 1.0 })
-                {
-                    depthOfFieldEffect.StrengthAboveHorizon = strengthAbove;
-                    depthOfFieldEffect.StrengthBelowHorizon = strengthBelow;
-                    var buffer = await renderer.RenderAsync();
-                    await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CFace_FocusObjectDoF_{0}_{1}.jpg", depthOfFieldEffect.StrengthAboveHorizon, depthOfFieldEffect.StrengthBelowHorizon));
-                }
+                var buffer = await renderer.RenderAsync();
 
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "FocusObjectDepthOfFieldEffectTest_Preview.jpg");
             }
         }
 
         [TestMethod]
-        public async Task RenderVariousStrengthsAndScales()
+        public async Task RenderFullQualityImage()
         {
             using (var source = await KnownImages.CFace.GetImageSourceAsync())
-            using (var objectScribbles = await KnownImages.CFaceScribble.GetImageSourceAsync())
-            using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 238, 50), objectScribbles))
-            using (var filterEffect = new FilterEffect(source))
-            using (var depthOfFieldEffect = new FocusObjectDepthOfFieldEffect(filterEffect, segmenter, new Point(0, 0), new Point(1, 0), 1.0, 1.0, DepthOfFieldQuality.Full))
-            using (var renderer = new JpegRenderer(depthOfFieldEffect))
+            using (var annotations = await KnownImages.CFaceScribble.GetImageSourceAsync())
+            using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 238, 50), annotations))
+            using (var effect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0.8), new Point(1, 0.8), 1.0, 1.0, DepthOfFieldQuality.Full))
+            using (var renderer = new JpegRenderer(effect))
             {
-                foreach (var scale in new double[] { 1.0, 0.5, 0.2 })
-                {
-                    foreach (var strengthAbove in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                        foreach (var strengthBelow in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                    {
-                        filterEffect.Filters = new[] { new ScaleFilter(scale) };
-                        depthOfFieldEffect.StrengthAboveHorizon = strengthAbove;
-                        depthOfFieldEffect.StrengthBelowHorizon = strengthBelow;
-                        var buffer = await renderer.RenderAsync();
-                        await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CFace_FocusObjectDoF_{0}_{1}_{2}.jpg", scale, depthOfFieldEffect.StrengthAboveHorizon, depthOfFieldEffect.StrengthBelowHorizon));
-                    }
-                }
+                var buffer = await renderer.RenderAsync();
 
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "FocusObjectDepthOfFieldEffectTest_Full.jpg");
             }
         }
-
-        [TestMethod]
-        public async Task RenderPreviewAtVariousStrengths()
-        {
-            using (var source = await KnownImages.CFace.GetImageSourceAsync())
-            using (var objectScribbles = await KnownImages.CFaceScribble.GetImageSourceAsync())
-            using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 238, 50), objectScribbles))
-            using (var depthOfFieldEffect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0), new Point(1, 0), 1.0, 1.0, DepthOfFieldQuality.Full))
-            using (var renderer = new JpegRenderer(depthOfFieldEffect))
-            {
-                foreach (var strengthAbove in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                    foreach (var strengthBelow in new double[] { /* 0.01, 0.05, */ 0.0, 0.1, 0.2, 0.5, 0.75, 1.0 })
-                {
-                    depthOfFieldEffect.StrengthAboveHorizon = strengthAbove;
-                    depthOfFieldEffect.StrengthBelowHorizon = strengthBelow;
-                    var buffer = await renderer.RenderAsync();
-                    await FileUtilities.SaveToPicturesLibraryAsync(buffer, String.Format("CFace_FocusObjectDoF_Preview_{0}_{1}.jpg", depthOfFieldEffect.StrengthAboveHorizon, depthOfFieldEffect.StrengthBelowHorizon));
-                }
-
-            }
-        }
-
-	}
+    }
 }

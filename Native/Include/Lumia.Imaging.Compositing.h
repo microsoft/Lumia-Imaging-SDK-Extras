@@ -19,7 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// 14a955a8c166572ba70fae472486786fbe39ddda Fri, 12 Dec 2014 18:46:36 +0100
+// 7d65f79fec3ef6d7acadc66b4427b726e18b6fee Mon, 15 Dec 2014 15:51:49 +0100
 
 
 
@@ -27,9 +27,9 @@ THE SOFTWARE.
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sat Dec 13 23:08:32 2014
+/* at Mon Dec 15 22:03:22 2014
  */
-/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Compositing.idl-5a04ef61:
+/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Compositing.idl-c2fe53c5:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
@@ -306,26 +306,6 @@ namespace ABI {
 #endif /* __cplusplus */
 
 #endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIImageFusionFilterFactory_FWD_DEFINED__ */
-
-
-#ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_FWD_DEFINED__
-#define ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_FWD_DEFINED__
-typedef interface __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier;
-
-#ifdef __cplusplus
-namespace ABI {
-    namespace Lumia {
-        namespace Imaging {
-            namespace Compositing {
-                interface IInteractiveSegmentationMaskRectifier;
-            } /* end namespace */
-        } /* end namespace */
-    } /* end namespace */
-} /* end namespace */
-
-#endif /* __cplusplus */
-
-#endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_FWD_DEFINED__ */
 
 
 #ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_FWD_DEFINED__
@@ -702,16 +682,6 @@ extern "C" {
 #if !defined(__cplusplus)
 #if !defined(__cplusplus)
 
-typedef enum __x_ABI_CLumia_CImaging_CMaskAnnotationType __x_ABI_CLumia_CImaging_CMaskAnnotationType;
-
-
-#endif /* end if !defined(__cplusplus) */
-
-
-#endif
-#if !defined(__cplusplus)
-#if !defined(__cplusplus)
-
 typedef enum __x_ABI_CLumia_CImaging_COutputOption __x_ABI_CLumia_CImaging_COutputOption;
 
 
@@ -738,7 +708,6 @@ typedef enum __x_ABI_CLumia_CImaging_CCompositing_CBlendFunction __x_ABI_CLumia_
 
 
 #endif
-
 
 
 
@@ -812,17 +781,6 @@ namespace ABI {
 namespace Lumia {
 namespace Imaging {
 namespace Compositing {
-class InteractiveSegmentationMaskRectifier;
-} /*Compositing*/
-} /*Imaging*/
-} /*Lumia*/
-}
-#endif
-#ifdef __cplusplus
-namespace ABI {
-namespace Lumia {
-namespace Imaging {
-namespace Compositing {
 class InteractiveForegroundSegmenter;
 } /*Compositing*/
 } /*Imaging*/
@@ -848,22 +806,6 @@ class ObjectExtractor;
 
 
 
-
-#ifdef __cplusplus
-
-} /* end extern "C" */
-namespace ABI {
-    namespace Lumia {
-        namespace Imaging {
-            
-            typedef enum MaskAnnotationType MaskAnnotationType;
-            
-        } /* end namespace */
-    } /* end namespace */
-} /* end namespace */
-
-extern "C" { 
-#endif
 
 #ifdef __cplusplus
 
@@ -931,7 +873,6 @@ namespace ABI {
 
 extern "C" { 
 #endif
-
 
 
 
@@ -3749,9 +3690,9 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIImageFusionFilterF
 /* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0025 */
 /* [local] */ 
 
-#if !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_INTERFACE_DEFINED__)
-extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_Imaging_Compositing_IInteractiveSegmentationMaskRectifier[] = L"Lumia.Imaging.Compositing.IInteractiveSegmentationMaskRectifier";
-#endif /* !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_INTERFACE_DEFINED__) */
+#if !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__)
+extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_Imaging_Compositing_IInteractiveForegroundSegmenter[] = L"Lumia.Imaging.Compositing.IInteractiveForegroundSegmenter";
+#endif /* !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__) */
 
 
 /* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0025 */
@@ -3761,193 +3702,6 @@ extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_I
 
 extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0025_v0_0_c_ifspec;
 extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0025_v0_0_s_ifspec;
-
-#ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_INTERFACE_DEFINED__
-#define ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_INTERFACE_DEFINED__
-
-/* interface __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier */
-/* [uuid][object] */ 
-
-
-
-/* interface ABI::Lumia::Imaging::Compositing::IInteractiveSegmentationMaskRectifier */
-/* [uuid][object] */ 
-
-
-EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier;
-
-#if defined(__cplusplus) && !defined(CINTERFACE)
-    } /* end extern "C" */
-    namespace ABI {
-        namespace Lumia {
-            namespace Imaging {
-                namespace Compositing {
-                    
-                    MIDL_INTERFACE("23C6A67D-78D0-3F4B-9FB8-4F2A87B8B81D")
-                    IInteractiveSegmentationMaskRectifier : public IInspectable
-                    {
-                    public:
-                        virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_AnnotationsColor( 
-                            /* [out][retval] */ __RPC__out ABI::Windows::UI::Color *__returnValue) = 0;
-                        
-                        virtual /* [propput] */ HRESULT STDMETHODCALLTYPE put_AnnotationsColor( 
-                            /* [in] */ ABI::Windows::UI::Color color) = 0;
-                        
-                        virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_AnnotationsSource( 
-                            /* [out][retval] */ __RPC__deref_out_opt ABI::Lumia::Imaging::IImageProvider **__returnValue) = 0;
-                        
-                        virtual /* [propput] */ HRESULT STDMETHODCALLTYPE put_AnnotationsSource( 
-                            /* [in] */ __RPC__in_opt ABI::Lumia::Imaging::IImageProvider *value) = 0;
-                        
-                        virtual /* [propget] */ HRESULT STDMETHODCALLTYPE get_MaskAnnotationType( 
-                            /* [out][retval] */ __RPC__out ABI::Lumia::Imaging::MaskAnnotationType *__returnValue) = 0;
-                        
-                        virtual /* [propput] */ HRESULT STDMETHODCALLTYPE put_MaskAnnotationType( 
-                            /* [in] */ ABI::Lumia::Imaging::MaskAnnotationType value) = 0;
-                        
-                    };
-
-                    extern const __declspec(selectany) IID & IID_IInteractiveSegmentationMaskRectifier = __uuidof(IInteractiveSegmentationMaskRectifier);
-
-                    
-                }  /* end namespace */
-            }  /* end namespace */
-        }  /* end namespace */
-    }  /* end namespace */
-    extern "C" { 
-    
-#else 	/* C style interface */
-
-    typedef struct __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifierVtbl
-    {
-        BEGIN_INTERFACE
-        
-        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [in] */ __RPC__in REFIID riid,
-            /* [annotation][iid_is][out] */ 
-            _COM_Outptr_  void **ppvObject);
-        
-        ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This);
-        
-        ULONG ( STDMETHODCALLTYPE *Release )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This);
-        
-        HRESULT ( STDMETHODCALLTYPE *GetIids )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [out] */ __RPC__out ULONG *iidCount,
-            /* [size_is][size_is][out] */ __RPC__deref_out_ecount_full_opt(*iidCount) IID **iids);
-        
-        HRESULT ( STDMETHODCALLTYPE *GetRuntimeClassName )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [out] */ __RPC__deref_out_opt HSTRING *className);
-        
-        HRESULT ( STDMETHODCALLTYPE *GetTrustLevel )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [out] */ __RPC__out TrustLevel *trustLevel);
-        
-        /* [propget] */ HRESULT ( STDMETHODCALLTYPE *get_AnnotationsColor )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [out][retval] */ __RPC__out __x_ABI_CWindows_CUI_CColor *__returnValue);
-        
-        /* [propput] */ HRESULT ( STDMETHODCALLTYPE *put_AnnotationsColor )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [in] */ __x_ABI_CWindows_CUI_CColor color);
-        
-        /* [propget] */ HRESULT ( STDMETHODCALLTYPE *get_AnnotationsSource )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [out][retval] */ __RPC__deref_out_opt __x_ABI_CLumia_CImaging_CIImageProvider **__returnValue);
-        
-        /* [propput] */ HRESULT ( STDMETHODCALLTYPE *put_AnnotationsSource )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [in] */ __RPC__in_opt __x_ABI_CLumia_CImaging_CIImageProvider *value);
-        
-        /* [propget] */ HRESULT ( STDMETHODCALLTYPE *get_MaskAnnotationType )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [out][retval] */ __RPC__out __x_ABI_CLumia_CImaging_CMaskAnnotationType *__returnValue);
-        
-        /* [propput] */ HRESULT ( STDMETHODCALLTYPE *put_MaskAnnotationType )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier * This,
-            /* [in] */ __x_ABI_CLumia_CImaging_CMaskAnnotationType value);
-        
-        END_INTERFACE
-    } __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifierVtbl;
-
-    interface __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier
-    {
-        CONST_VTBL struct __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifierVtbl *lpVtbl;
-    };
-
-    
-
-#ifdef COBJMACROS
-
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_QueryInterface(This,riid,ppvObject)	\
-    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_AddRef(This)	\
-    ( (This)->lpVtbl -> AddRef(This) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_Release(This)	\
-    ( (This)->lpVtbl -> Release(This) ) 
-
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_GetIids(This,iidCount,iids)	\
-    ( (This)->lpVtbl -> GetIids(This,iidCount,iids) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_GetRuntimeClassName(This,className)	\
-    ( (This)->lpVtbl -> GetRuntimeClassName(This,className) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_GetTrustLevel(This,trustLevel)	\
-    ( (This)->lpVtbl -> GetTrustLevel(This,trustLevel) ) 
-
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_get_AnnotationsColor(This,__returnValue)	\
-    ( (This)->lpVtbl -> get_AnnotationsColor(This,__returnValue) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_put_AnnotationsColor(This,color)	\
-    ( (This)->lpVtbl -> put_AnnotationsColor(This,color) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_get_AnnotationsSource(This,__returnValue)	\
-    ( (This)->lpVtbl -> get_AnnotationsSource(This,__returnValue) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_put_AnnotationsSource(This,value)	\
-    ( (This)->lpVtbl -> put_AnnotationsSource(This,value) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_get_MaskAnnotationType(This,__returnValue)	\
-    ( (This)->lpVtbl -> get_MaskAnnotationType(This,__returnValue) ) 
-
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_put_MaskAnnotationType(This,value)	\
-    ( (This)->lpVtbl -> put_MaskAnnotationType(This,value) ) 
-
-#endif /* COBJMACROS */
-
-
-#endif 	/* C style interface */
-
-
-
-
-#endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier_INTERFACE_DEFINED__ */
-
-
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026 */
-/* [local] */ 
-
-#if !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__)
-extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_Imaging_Compositing_IInteractiveForegroundSegmenter[] = L"Lumia.Imaging.Compositing.IInteractiveForegroundSegmenter";
-#endif /* !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__) */
-
-
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026 */
-/* [local] */ 
-
-
-
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026_v0_0_s_ifspec;
 
 #ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__
 #define ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__
@@ -3997,9 +3751,6 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegro
                         
                         virtual /* [propput] */ HRESULT STDMETHODCALLTYPE put_Quality( 
                             /* [in] */ DOUBLE quality) = 0;
-                        
-                        virtual HRESULT STDMETHODCALLTYPE GetInteractiveSegmentationMaskRectifier( 
-                            /* [out][retval] */ __RPC__deref_out_opt ABI::Lumia::Imaging::Compositing::IInteractiveSegmentationMaskRectifier **__returnValue) = 0;
                         
                     };
 
@@ -4075,10 +3826,6 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegro
             __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter * This,
             /* [in] */ DOUBLE quality);
         
-        HRESULT ( STDMETHODCALLTYPE *GetInteractiveSegmentationMaskRectifier )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter * This,
-            /* [out][retval] */ __RPC__deref_out_opt __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveSegmentationMaskRectifier **__returnValue);
-        
         END_INTERFACE
     } __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenterVtbl;
 
@@ -4136,9 +3883,6 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegro
 #define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_put_Quality(This,quality)	\
     ( (This)->lpVtbl -> put_Quality(This,quality) ) 
 
-#define __x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_GetInteractiveSegmentationMaskRectifier(This,__returnValue)	\
-    ( (This)->lpVtbl -> GetInteractiveSegmentationMaskRectifier(This,__returnValue) ) 
-
 #endif /* COBJMACROS */
 
 
@@ -4150,7 +3894,7 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegro
 #endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenter_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026 */
 /* [local] */ 
 
 #if !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenterFactory_INTERFACE_DEFINED__)
@@ -4158,13 +3902,13 @@ extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_I
 #endif /* !defined(____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenterFactory_INTERFACE_DEFINED__) */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026 */
 /* [local] */ 
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0026_v0_0_s_ifspec;
 
 #ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenterFactory_INTERFACE_DEFINED__
 #define ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenterFactory_INTERFACE_DEFINED__
@@ -4323,7 +4067,7 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegro
 #endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIInteractiveForegroundSegmenterFactory_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027 */
 /* [local] */ 
 
 #if !defined(____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractor_INTERFACE_DEFINED__)
@@ -4331,13 +4075,13 @@ extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_I
 #endif /* !defined(____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractor_INTERFACE_DEFINED__) */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027 */
 /* [local] */ 
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0027_v0_0_s_ifspec;
 
 #ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractor_INTERFACE_DEFINED__
 #define ____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractor_INTERFACE_DEFINED__
@@ -4480,7 +4224,7 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractor;
 #endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractor_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028 */
 /* [local] */ 
 
 #if !defined(____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractorFactory_INTERFACE_DEFINED__)
@@ -4488,13 +4232,13 @@ extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Lumia_I
 #endif /* !defined(____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractorFactory_INTERFACE_DEFINED__) */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028 */
 /* [local] */ 
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0028_v0_0_s_ifspec;
 
 #ifndef ____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractorFactory_INTERFACE_DEFINED__
 #define ____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractorFactory_INTERFACE_DEFINED__
@@ -4621,7 +4365,7 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractorFac
 #endif 	/* ____x_ABI_CLumia_CImaging_CCompositing_CIObjectExtractorFactory_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0030 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029 */
 /* [local] */ 
 
 #ifndef RUNTIMECLASS_Lumia_Imaging_Compositing_AlphaToGrayscaleFilter_DEFINED
@@ -4648,10 +4392,6 @@ extern const __declspec(selectany) _Null_terminated_ WCHAR RuntimeClass_Lumia_Im
 #define RUNTIMECLASS_Lumia_Imaging_Compositing_ImageFusionFilter_DEFINED
 extern const __declspec(selectany) _Null_terminated_ WCHAR RuntimeClass_Lumia_Imaging_Compositing_ImageFusionFilter[] = L"Lumia.Imaging.Compositing.ImageFusionFilter";
 #endif
-#ifndef RUNTIMECLASS_Lumia_Imaging_Compositing_InteractiveSegmentationMaskRectifier_DEFINED
-#define RUNTIMECLASS_Lumia_Imaging_Compositing_InteractiveSegmentationMaskRectifier_DEFINED
-extern const __declspec(selectany) _Null_terminated_ WCHAR RuntimeClass_Lumia_Imaging_Compositing_InteractiveSegmentationMaskRectifier[] = L"Lumia.Imaging.Compositing.InteractiveSegmentationMaskRectifier";
-#endif
 #ifndef RUNTIMECLASS_Lumia_Imaging_Compositing_InteractiveForegroundSegmenter_DEFINED
 #define RUNTIMECLASS_Lumia_Imaging_Compositing_InteractiveForegroundSegmenter_DEFINED
 extern const __declspec(selectany) _Null_terminated_ WCHAR RuntimeClass_Lumia_Imaging_Compositing_InteractiveForegroundSegmenter[] = L"Lumia.Imaging.Compositing.InteractiveForegroundSegmenter";
@@ -4662,13 +4402,13 @@ extern const __declspec(selectany) _Null_terminated_ WCHAR RuntimeClass_Lumia_Im
 #endif
 
 
-/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0030 */
+/* interface __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029 */
 /* [local] */ 
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0030_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0030_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Lumia2EImaging2ECompositing_0000_0029_v0_0_s_ifspec;
 
 /* Additional Prototypes for ALL interfaces */
 

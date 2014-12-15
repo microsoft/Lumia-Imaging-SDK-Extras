@@ -19,7 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// 14a955a8c166572ba70fae472486786fbe39ddda Fri, 12 Dec 2014 18:46:36 +0100
+// 7d65f79fec3ef6d7acadc66b4427b726e18b6fee Mon, 15 Dec 2014 15:51:49 +0100
 
 
 
@@ -27,9 +27,9 @@ THE SOFTWARE.
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sat Dec 13 23:08:42 2014
+/* at Mon Dec 15 22:03:34 2014
  */
-/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Custom.idl-d6ea8ba6:
+/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Custom.idl-c6cda5df:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
@@ -3396,9 +3396,6 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCustom_CIEffectGroup;
                             /* [in] */ __RPC__in_opt ABI::Lumia::Imaging::IImageProvider *groupSource,
                             /* [out][retval] */ __RPC__deref_out_opt ABI::Lumia::Imaging::IImageProvider **__returnValue) = 0;
                         
-                        virtual HRESULT STDMETHODCALLTYPE LoadAsync( 
-                            /* [out][retval] */ __RPC__deref_out_opt ABI::Windows::Foundation::IAsyncAction **__returnValue) = 0;
-                        
                     };
 
                     extern const __declspec(selectany) IID & IID_IEffectGroup = __uuidof(IEffectGroup);
@@ -3446,10 +3443,6 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCustom_CIEffectGroup;
             /* [in] */ __RPC__in_opt __x_ABI_CLumia_CImaging_CIImageProvider *groupSource,
             /* [out][retval] */ __RPC__deref_out_opt __x_ABI_CLumia_CImaging_CIImageProvider **__returnValue);
         
-        HRESULT ( STDMETHODCALLTYPE *LoadAsync )( 
-            __RPC__in __x_ABI_CLumia_CImaging_CCustom_CIEffectGroup * This,
-            /* [out][retval] */ __RPC__deref_out_opt __x_ABI_CWindows_CFoundation_CIAsyncAction **__returnValue);
-        
         END_INTERFACE
     } __x_ABI_CLumia_CImaging_CCustom_CIEffectGroupVtbl;
 
@@ -3485,9 +3478,6 @@ EXTERN_C const IID IID___x_ABI_CLumia_CImaging_CCustom_CIEffectGroup;
 
 #define __x_ABI_CLumia_CImaging_CCustom_CIEffectGroup_PrepareGroup(This,groupSource,__returnValue)	\
     ( (This)->lpVtbl -> PrepareGroup(This,groupSource,__returnValue) ) 
-
-#define __x_ABI_CLumia_CImaging_CCustom_CIEffectGroup_LoadAsync(This,__returnValue)	\
-    ( (This)->lpVtbl -> LoadAsync(This,__returnValue) ) 
 
 #endif /* COBJMACROS */
 

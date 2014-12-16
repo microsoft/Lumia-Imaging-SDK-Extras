@@ -87,7 +87,7 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 
         private static async Task RenderEffect(FocusBand focusBand, DepthOfFieldQuality quality, [CallerMemberName] string testName = "")
         {
-            using (var source = await KnownImages.CFace.GetImageSourceAsync())
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
             using (var effect = new LensTiltDepthOfFieldEffect(source, focusBand, 1.0, 1.0, quality))
             using (var renderer = new JpegRenderer(effect))
             {

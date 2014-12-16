@@ -27,13 +27,13 @@ namespace Lumia.Imaging.Extras.Tests
 	{
 		static KnownImages()
 		{
-			CPH = new KnownImage(@"TestImages\cph.jpg", new Size(1023, 1023));
-			CFace = new KnownImage(@"TestImages\cface.jpg", new Size(300, 370));
-			CFaceScribble = new KnownImage(@"TestImages\cfaceScribble.jpg", new Size(150, 185));
+            MikikoLynn = new KnownImage(@"TestImages\WEB13_Mikiko_Lynn_155_small.jpg", new Size(1023, 1023));
+            Nurse = new KnownImage(@"TestImages\MSC10_JohnFrnds_003_cropped_modified.jpg", new Size(988, 651));
+            NurseScribbles = new KnownImage(@"TestImages\GuyScribbles.png", new Size(988, 651));
 		}
 
-		public static KnownImage CPH { get; private set; }
-		public static KnownImage CFace { get; private set; }
-		public static KnownImage CFaceScribble { get; private set; }
+		public static KnownImage MikikoLynn { get; private set; }
+		public static KnownImage Nurse { get; private set; }
+        public static KnownImage NurseScribbles { get; private set; }
 	}
 }

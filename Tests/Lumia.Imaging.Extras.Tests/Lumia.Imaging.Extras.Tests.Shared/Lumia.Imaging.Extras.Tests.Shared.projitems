@@ -28,8 +28,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)MaybeTaskTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)TestImages\cface.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)TestImages\cfaceScribble.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)TestImages\cph.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)TestImages\GuyScribbles.png" />
+    <Content Include="$(MSBuildThisFileDirectory)TestImages\MSB09_Group_004_cropped_orangeshirt.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)TestImages\MSC10_JohnFrnds_003_cropped_modified.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)TestImages\WEB13_Mikiko_Lynn_155_small.jpg" />
   </ItemGroup>
 </Project>

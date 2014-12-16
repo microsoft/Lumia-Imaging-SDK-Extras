@@ -34,7 +34,7 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
         [TestMethod]
         public async Task RenderPreviewImage()
         {
-            using (var source = await KnownImages.CFace.GetImageSourceAsync())
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Preview))
             using (var renderer = new JpegRenderer(effect))
             {
@@ -47,7 +47,7 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
         [TestMethod]
         public async Task RenderFullQualityImage()
         {
-            using (var source = await KnownImages.CFace.GetImageSourceAsync())
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Full))
             using (var renderer = new JpegRenderer(effect))
             {

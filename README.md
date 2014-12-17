@@ -74,30 +74,36 @@ Support code and samples for writing custom Lumia Imaging SDK components in nati
 
 ###Headers and IDL files
     Native/Include/
+
 Generated IDL and .h files for the Lumia Imaging SDK. These make it possible to use the Imaging SDK in various lower-level WRL and interop scenarios.
+
+These were generated with the **winmdidl** tool (from the Windows SDK) and then also postprocessed to remove some quirks present in C++/CX .winmd files. The generation scripts may also be published but they're not yet available.
+
+For now, the namespaces from Lumia.Imaging.winmd are covered.
+The intention is to keep updating this with files matching the latest released SDK.
 
 ###Custom filter helpers
     Native/CustomFilter/
 Makes it easier to write custom block-based filters in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomFilterBase in Lumia.Imaging.Managed.
-
+(
 ###Custom effect helpers
     Native/CustomEffect/
-**(Work in progress)** 
+**(WRL version pending, C++/CX version available)** 
 
 Makes it easier to write custom bitmap-based effects in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomEffectBase in Lumia.Imaging.Managed.
 
 ###Custom image source helpers
     Native/CustomImageSource/
-**(Work in progress)** 
+**(Work in progress, not yet available)** 
 
 Makes it easier to write custom bitmap-based image sources in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomImageSourceBase in Lumia.Imaging.Managed.
 
 ###Effect group helpers
     Native/CustomEffect/
-**(Work in progress)** 
+**(Work in progress, not yet available)** 
 
 Makes it easier to write effect groups in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to EffectGroupBase in Lumia.Imaging.Managed.
@@ -113,5 +119,18 @@ WRL and C++/CX versions of an example custom filter that passes through the imag
 	
 **RgbGainCustomFilter**:
 WRL and C++/CX versions of an example custom filter that has parameters and does something interesting.
+
+**EmptyCustomEffect**:
+C++/CX version of an example custom effect that passes through the image unchanged.
 	
 
+##Unit tests
+
+All tests are available in the sample solution: "Lumia Imaging SDK Extras.sln".
+
+There are two test projects:
+
+- Lumia.Imaging.Extras.Tests.Windows
+- Lumia.Imaging.Extras.Tests.WindowsPhone
+
+You may want to right-click and do "Unload Project" on the one you **don't** want to run, as otherwise they are hard to distinguish in the Test Explorer in Visual Studio.

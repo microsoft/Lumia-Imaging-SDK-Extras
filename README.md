@@ -110,8 +110,7 @@ Makes it easier to write effect groups in both standard C++ with **WRL** and in 
 The API is similar to EffectGroupBase in Lumia.Imaging.Managed.
 
 ##Samples
-Folder (C++/CX): [Native/Samples/CustomCx/]((https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Samples/CustomCx)
-Folder (WRL): [Native/Samples/CustomWRL/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Samples/CustomWRL)
+Folder: (C++/CX) [Native/Samples/CustomCx/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Samples/CustomCx) / (WRL) [Native/Samples/CustomWRL/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Samples/CustomWRL)
 
 Sample library projects showing how to package custom filters/effects/effect groups for use in universal apps (Windows 8.1, Windows Phone 8.1).
 

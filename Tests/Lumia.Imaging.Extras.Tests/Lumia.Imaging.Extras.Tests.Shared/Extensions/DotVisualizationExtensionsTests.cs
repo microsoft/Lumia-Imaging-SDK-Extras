@@ -19,21 +19,17 @@
 * THE SOFTWARE.
 */
 
-using System.Linq;
-using Lumia.Imaging;
-using Windows.Foundation;
-using System.Threading.Tasks;
+using Lumia.Imaging.Adjustments;
+using Lumia.Imaging.Artistic;
+using Lumia.Imaging.Compositing;
+using Lumia.Imaging.Extras.Extensions;
+using Lumia.Imaging.Transforms;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Windows.UI;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using Lumia.Imaging.Adjustments;
-using Lumia.Imaging.Compositing;
-using Lumia.Imaging.Transforms;
-using Lumia.Imaging.Artistic;
-using Lumia.Imaging.Extras;
 using System.Text.RegularExpressions;
-using Lumia.Imaging.Extras.Extensions;
+using Windows.Foundation;
+using Windows.UI;
 
 namespace Lumia.Imaging.Extras.Tests.Extensions
 {

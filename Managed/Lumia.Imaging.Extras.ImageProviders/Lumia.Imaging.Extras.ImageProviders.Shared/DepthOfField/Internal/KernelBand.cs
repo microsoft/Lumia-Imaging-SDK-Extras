@@ -20,11 +20,6 @@
 */
 
 using Lumia.Imaging.Adjustments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 {

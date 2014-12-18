@@ -19,15 +19,13 @@
 * THE SOFTWARE.
 */
 
+using Lumia.Imaging.Compositing;
+using Lumia.Imaging.Extras.Effects.DepthOfField;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using Lumia.Imaging;
-using Lumia.Imaging.Compositing;
-using Windows.UI;
-using Lumia.Imaging.Extras.Effects.DepthOfField;
 using Windows.Foundation;
-using System.Runtime.CompilerServices;
+using Windows.UI;
 
 namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 {

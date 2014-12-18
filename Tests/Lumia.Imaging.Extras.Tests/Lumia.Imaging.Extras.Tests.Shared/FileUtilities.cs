@@ -24,17 +24,13 @@ using System.Threading;
 using System.Windows.Media.Imaging;
 using Microsoft.Xna.Framework.Media;
 #else
-using Windows.UI.Xaml.Media.Imaging;
 #endif
-using Lumia.InteropServices.WindowsRuntime;
 using System;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.ApplicationModel;
-using System.Collections.Generic;
 
 namespace Lumia.Imaging.Extras.Tests
 {

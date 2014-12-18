@@ -19,7 +19,6 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging;
 using Windows.Foundation;
 
 namespace Lumia.Imaging.Extras.Effects.DepthOfField

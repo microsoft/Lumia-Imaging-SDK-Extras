@@ -19,18 +19,13 @@
 * THE SOFTWARE.
 */
 
+using Lumia.Imaging.Compositing;
+using Lumia.Imaging.Extras.Layers;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
-using Lumia.Imaging.Extras.Layers;
-using Lumia.Imaging.Adjustments;
-using Lumia.Imaging.Compositing;
 
 namespace Lumia.Imaging.Extras.Tests.Layers
 {

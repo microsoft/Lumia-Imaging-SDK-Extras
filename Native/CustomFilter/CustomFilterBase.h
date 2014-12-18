@@ -19,10 +19,6 @@
 * THE SOFTWARE.
 */
 
-/*
-	CustomFilterBase.h 
-	This file contains WRL support for user defined custom filters.
-*/
 #pragma once
 
 #include <wrl.h>

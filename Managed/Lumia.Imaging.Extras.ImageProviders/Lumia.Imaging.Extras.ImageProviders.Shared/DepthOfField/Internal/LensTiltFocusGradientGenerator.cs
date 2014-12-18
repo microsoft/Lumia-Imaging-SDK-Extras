@@ -19,8 +19,6 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging;
-using Lumia.Imaging.Adjustments;
 using System;
 using System.Collections.Generic;
 using System.Linq;

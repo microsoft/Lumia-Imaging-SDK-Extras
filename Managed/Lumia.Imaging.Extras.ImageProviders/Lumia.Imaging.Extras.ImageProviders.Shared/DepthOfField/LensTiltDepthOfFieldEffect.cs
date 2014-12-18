@@ -19,13 +19,10 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging;
 using Lumia.Imaging.Adjustments;
-using System;
+using Lumia.Imaging.Extras.Effects.DepthOfField.Internal;
 using System.Linq;
 using Windows.Foundation;
-using Lumia.Imaging.Extras.Effects.DepthOfField.Internal;
-using System.Diagnostics;
 
 namespace Lumia.Imaging.Extras.Effects.DepthOfField
 {

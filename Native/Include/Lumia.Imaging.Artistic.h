@@ -19,7 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// 7d65f79fec3ef6d7acadc66b4427b726e18b6fee Mon, 15 Dec 2014 15:51:49 +0100
+// ff36e5204094ccf45e4f6717c336febaea749ea9 Thu, 18 Dec 2014 16:15:12 +0100
 
 
 
@@ -27,9 +27,9 @@ THE SOFTWARE.
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Mon Dec 15 22:03:09 2014
+/* at Thu Dec 18 20:27:28 2014
  */
-/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Artistic.idl-ff78800e:
+/* Compiler settings for C:\Users\cadahl\AppData\Local\Temp\Lumia.Imaging.Artistic.idl-93ea217f:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 

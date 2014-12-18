@@ -19,7 +19,7 @@ Parts contained will typically target the [latest released version of the Lumia 
 Managed (C#/.NET)
 ==
 ##Layer system
-    Managed/Lumia.Imaging.Extras.Layers/
+Folder: [Managed/Lumia.Imaging.Extras.Layers/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Managed/Lumia.Imaging.Extras.Layers/Lumia.Imaging.Extras.Layers.Shared)
 
 Allows to describe image processing as a list of layers, like the familiar representation found in photo editing apps. 
 
@@ -32,7 +32,7 @@ After configuring the layers, an IImageProvider endpoint can be easily retrieved
 - Flexible, construction of actual objects can be deferred etc.
 
 ##Image sources/effects
-    Managed/Lumia.Imaging.Extras.ImageProviders/
+Folder: [Managed/Lumia.Imaging.Extras.ImageProviders/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Managed/Lumia.Imaging.Extras.ImageProviders/Lumia.Imaging.Extras.ImageProviders.Shared)
 
 ####NoiseImageSource
 A noise generator image source. Internally uses a ColorImageSource and a NoiseFilter.
@@ -48,7 +48,7 @@ Example of an effect that does higher level HSL adjustments, similar to familiar
 Allows adjustments of saturation and lightness around Master, Red, Green, Blue, Cyan, Magenta and Yellow channels.
 
 ##Utility code
-    Managed/Lumia.Imaging.Extras.Utility/
+Folder: [Managed/Lumia.Imaging.Extras.Utility/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Managed/Lumia.Imaging.Extras.Utility/Lumia.Imaging.Extras.Utility.Shared)
 
 ####DotVisualizationExtensions
 - **ToDotString**: Renders the layout of a Lumia Imaging SDK processing graph into **GraphViz** "dot" format, allowing the developer to visualize the image processing in a diagram.
@@ -73,7 +73,7 @@ Native (C++ with WRL and C++/CX)
 Support code and samples for writing custom Lumia Imaging SDK components in native code (WRL and C++/CX).
 
 ###Headers and IDL files
-    Native/Include/
+Folder: [Native/Include/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Include)
 
 Generated IDL and .h files for the Lumia Imaging SDK. These make it possible to use the Imaging SDK in various lower-level WRL and interop scenarios.
 
@@ -83,34 +83,35 @@ For now, the namespaces from Lumia.Imaging.winmd are covered.
 The intention is to keep updating this with files matching the latest released SDK.
 
 ###Custom filter helpers
-    Native/CustomFilter/
+Folder: [Native/CustomFilter/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/CustomFilter)
+
 Makes it easier to write custom block-based filters in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomFilterBase in Lumia.Imaging.Managed.
-(
+
 ###Custom effect helpers
-    Native/CustomEffect/
-**(WRL version pending, C++/CX version available)** 
+Folder: [Native/CustomEffect/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/CustomEffect)
+**(WRL version not yet available, C++/CX version available)** 
 
 Makes it easier to write custom bitmap-based effects in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomEffectBase in Lumia.Imaging.Managed.
 
 ###Custom image source helpers
-    Native/CustomImageSource/
+Folder: Native/CustomImageSource/
 **(Work in progress, not yet available)** 
 
 Makes it easier to write custom bitmap-based image sources in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomImageSourceBase in Lumia.Imaging.Managed.
 
 ###Effect group helpers
-    Native/CustomEffect/
+Folder: Native/EffectGroup/
 **(Work in progress, not yet available)** 
 
 Makes it easier to write effect groups in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to EffectGroupBase in Lumia.Imaging.Managed.
 
 ##Samples
-    Native/Samples/CustomCx/
-    Native/Samples/CustomWRL/
+Folder (C++/CX): [Native/Samples/CustomCx/]((https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Samples/CustomCx)
+Folder (WRL): [Native/Samples/CustomWRL/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/Samples/CustomWRL)
 
 Sample library projects showing how to package custom filters/effects/effect groups for use in universal apps (Windows 8.1, Windows Phone 8.1).
 

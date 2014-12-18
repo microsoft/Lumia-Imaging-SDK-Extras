@@ -2,11 +2,11 @@
 Lumia Imaging SDK Extras
 ========================
 
-This repository contains extra functionality and sample code for the Lumia Imaging SDK. 
+This repository contains extra functionality and sample code for the [Lumia Imaging SDK](http://dev.windows.com/en-us/featured/lumia). 
 
-The code is provided under the MIT license, and can therefore be conveniently used and modified. 
+The code is provided under the [MIT license](https://raw.githubusercontent.com/Microsoft/Lumia-Imaging-SDK-Extras/master/License.txt), and can therefore be conveniently used and modified. 
 
-Parts contained will typically target the latest release version of the Lumia Imaging SDK, unless otherwise marked.
+Parts contained will typically target the [latest released version of the Lumia Imaging SDK](https://www.nuget.org/packages/LumiaImagingSDK/), unless otherwise marked.
 
 ###Philosophy
 

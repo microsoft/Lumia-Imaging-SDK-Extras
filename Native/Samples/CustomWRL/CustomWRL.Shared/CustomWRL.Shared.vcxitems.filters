@@ -9,9 +9,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.cpp">
+      <Filter>CustomFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp">
+      <Filter>CustomFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp">
       <Filter>CustomFilter</Filter>
     </ClCompile>
   </ItemGroup>
@@ -27,7 +31,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.idl" />
-    <Midl Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.idl" />
+    <Midl Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.idl">
+      <Filter>CustomFilter</Filter>
+    </Midl>
+    <Midl Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.idl">
+      <Filter>CustomFilter</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

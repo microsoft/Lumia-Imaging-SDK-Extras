@@ -5,8 +5,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterBase.h">
       <Filter>CustomFilter</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterCx.h">
       <Filter>CustomFilter</Filter>
     </ClInclude>
@@ -16,23 +14,52 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCx.h">
       <Filter>CustomEffect</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCxBuffer.h">
       <Filter>CustomEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\EffectGroup\EffectGroupCx.h">
+      <Filter>EffectGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.h">
+      <Filter>CustomEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.h">
+      <Filter>CustomFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.h">
+      <Filter>CustomFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyEffectGroup.h">
+      <Filter>EffectGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HighpassEffectGroup.h">
+      <Filter>EffectGroup</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomFilter\CustomFilterSession.cpp">
       <Filter>CustomFilter</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\CustomEffect\CustomEffectCxBuffer.cpp">
       <Filter>CustomEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomEffect.cpp">
+      <Filter>CustomEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyCustomFilter.cpp">
+      <Filter>CustomFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RgbGainCustomFilter.cpp">
+      <Filter>CustomFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyEffectGroup.cpp">
+      <Filter>EffectGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HighpassEffectGroup.cpp">
+      <Filter>EffectGroup</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +68,9 @@
     </Filter>
     <Filter Include="CustomEffect">
       <UniqueIdentifier>{cae8e38b-76e9-4ca5-8227-26e44fb39373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EffectGroup">
+      <UniqueIdentifier>{7bf2b0cf-a546-426a-856f-669fca2a9cb3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

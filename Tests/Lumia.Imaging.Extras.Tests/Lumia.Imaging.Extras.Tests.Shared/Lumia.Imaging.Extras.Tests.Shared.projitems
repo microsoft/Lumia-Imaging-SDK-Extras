@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomEffectsCxTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomFiltersCxTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Custom\CustomFiltersWRLTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Custom\EffectGroupCxTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\EllipticFocusDepthOfFieldEffectTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\FocusObjectDepthOfFieldEffectTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Effects\DepthOfField\LensTiltDepthOfFieldEffectTest.cs" />

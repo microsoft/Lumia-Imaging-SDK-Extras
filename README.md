@@ -38,7 +38,7 @@ Folder: [Managed/Lumia.Imaging.Extras.ImageProviders/](https://github.com/Micros
 A noise generator image source. Internally uses a ColorImageSource and a NoiseFilter.
 
 ####HighpassEffect 
-A "highpass" effect, similar to familiar ones in photo editing apps. 
+A "highpass" effect, similar to familiar ones in photo editing apps. Uses EffectGroupAdapter to form an "effect group".
 
 ####DepthofField
 A set of high-level scenarios showing how to set up a "DoF" effect.
@@ -90,21 +90,21 @@ The API is similar to CustomFilterBase in Lumia.Imaging.Managed.
 
 ###Custom effect helpers
 Folder: [Native/CustomEffect/](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/tree/master/Native/CustomEffect)
-**(WRL version not yet available, C++/CX version available)** 
+**(C++/CX only, WRL version not yet available)** 
 
 Makes it easier to write custom bitmap-based effects in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomEffectBase in Lumia.Imaging.Managed.
 
 ###Custom image source helpers
 Folder: Native/CustomImageSource/
-**(Work in progress, not yet available)** 
+**(not yet available)** 
 
 Makes it easier to write custom bitmap-based image sources in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to CustomImageSourceBase in Lumia.Imaging.Managed.
 
 ###Effect group helpers
 Folder: Native/EffectGroup/
-**(Work in progress, not yet available)** 
+**(C++/CX only, WRL version not yet available)** 
 
 Makes it easier to write effect groups in both standard C++ with **WRL** and in **C++/CX**. 
 The API is similar to EffectGroupBase in Lumia.Imaging.Managed.
@@ -123,6 +123,11 @@ WRL and C++/CX versions of an example custom filter that has parameters and does
 **EmptyCustomEffect**:
 C++/CX version of an example custom effect that passes through the image unchanged.
 	
+**EmptyEffectGroup**:
+C++/CX version of an example effect group that has no inner effects.
+
+**HighpassEffectGroup**:
+C++/CX version of an example effect group that is a native version of the [managed HighpassEffect](https://github.com/Microsoft/Lumia-Imaging-SDK-Extras/blob/master/Managed/Lumia.Imaging.Extras.ImageProviders/Lumia.Imaging.Extras.ImageProviders.Shared/HighpassEffect.cs).
 
 ##Unit tests
 

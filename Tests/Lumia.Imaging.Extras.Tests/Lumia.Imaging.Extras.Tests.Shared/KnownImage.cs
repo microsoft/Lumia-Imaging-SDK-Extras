@@ -21,18 +21,23 @@
 
 using System;
 using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace Lumia.Imaging.Extras.Tests
 {
-	public class KnownImage
+	public class KnownImage : IBufferProvider
 	{
-		public KnownImage(string path, Size size, ImageFormat imageFormat = ImageFormat.Jpeg)
+	    private Task<StorageFile> m_fileTask;
+	    private Task<IBuffer> m_bufferTask;
+
+	    public KnownImage(string path, Size size, ImageFormat imageFormat = ImageFormat.Jpeg)
 		{
 			Path = path;
 			Size = size;
@@ -41,28 +46,34 @@ namespace Lumia.Imaging.Extras.Tests
 			var regex = new Regex(@"(?<name>\w+)\.\w+?$", RegexOptions.IgnoreCase);
 			var matches = regex.Matches(Path);
 			Name = matches[0].Groups["name"].Value;
+
+            m_fileTask = Package.Current.InstalledLocation.GetFileAsync(Path).AsTask();
+            m_bufferTask = m_fileTask.ContinueWith(fileTask => FileIO.ReadBufferAsync(fileTask.Result).AsTask(), TaskContinuationOptions.OnlyOnRanToCompletion).Unwrap();
 		}
 
-		public Task<StorageFile> GetFileAsync(CancellationToken cancellationToken = default(CancellationToken))
+		public Task<StorageFile> GetFileAsync()
 		{
-			return Package.Current.InstalledLocation.GetFileAsync(Path).AsTask(cancellationToken);
+			return m_fileTask;
 		}
 
-		public async Task<StorageFileImageSource> GetImageSourceAsync(CancellationToken cancellationToken = default(CancellationToken))
-		{
-			return new StorageFileImageSource(await GetFileAsync(cancellationToken).ConfigureAwait(false));
-		}
-	 
-		public async Task<StreamImageSource> GetStreamImageSourceAsync(CancellationToken cancellationToken = default(CancellationToken))
-		{
-			var storageFile = await GetFileAsync(cancellationToken).ConfigureAwait(false);
-			var stream = await storageFile.OpenStreamForReadAsync().ConfigureAwait(false);                                        
-			return new StreamImageSource(stream); 
-		}
-		
-		public string Path { get; private set; }
+        public Task<IBuffer> GetBufferAsync()
+        {
+            return m_bufferTask;
+        }
+
+        public BufferProviderImageSource ImageSource
+	    {
+            get { return new BufferProviderImageSource(this); }
+	    }
+
+	    public string Path { get; private set; }
 		public Size Size { get; private set; }
 		public ImageFormat ImageFormat { get; private set; }
 		public string Name { get; private set; }
+	    
+        public IAsyncOperation<IBuffer> GetAsync()
+        {
+            return m_bufferTask.AsAsyncOperation();
+        }
 	}
 }

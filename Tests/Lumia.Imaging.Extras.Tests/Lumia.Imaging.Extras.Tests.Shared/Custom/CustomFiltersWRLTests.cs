@@ -33,38 +33,33 @@ namespace Lumia.Imaging.Extras.Tests.Custom
     public class CustomFiltersWRLTests
     {
         [TestMethod]
-        public void EmptyCustomFilterCanBeCreated()
+        public void CreateEmptyCustomFilter()
         {
             new EmptyCustomFilter();
         }
 
         [TestMethod]
-        public void RgbGainCustomFilterCanBeCreated()
+        public void CreateRgbGainCustomFilter()
         {
             new RgbGainCustomFilter();
         }
 
         [TestMethod]
-        public async Task EmptyCustomFilterCanBeUsedInRendering()
+        public async Task RenderEmptyCustomFilter()
         {
             var customFilter = new EmptyCustomFilter();
 
-            using (var source = new ColorImageSource(new Size(100, 100), Color.FromArgb(255, 128, 128, 128)))
+            using (var source = KnownImages.MikikoLynn.ImageSource)
             using (var filterEffect = new FilterEffect(source) { Filters = new[] { customFilter } })
-            using (var bitmapRenderer = new BitmapRenderer(filterEffect))
+            using (var renderer = new JpegRenderer(filterEffect))
             {
-                var bitmap = await bitmapRenderer.RenderAsync();
-                var pixelArray = bitmap.Buffers[0].Buffer.ToArray();
-
-                Assert.AreEqual(128, pixelArray[0]);
-                Assert.AreEqual(128, pixelArray[1]);
-                Assert.AreEqual(128, pixelArray[2]);
-                Assert.AreEqual(255, pixelArray[3]);
+                var buffer = await renderer.RenderAsync();
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
 
         [TestMethod]
-        public async Task RgbGainCustomFilterCanBeUsedInRendering()
+        public async Task RenderRgbGainCustomFilter()
         {
             var customFilter = new RgbGainCustomFilter()
             {
@@ -73,17 +68,12 @@ namespace Lumia.Imaging.Extras.Tests.Custom
                 BlueLevel = 0.75f
             };
 
-            using (var source = new ColorImageSource(new Size(100, 100), Color.FromArgb(255, 128, 128, 128)))
+            using (var source = KnownImages.MikikoLynn.ImageSource)
             using (var filterEffect = new FilterEffect(source) { Filters = new[] { customFilter } })
-            using (var bitmapRenderer = new BitmapRenderer(filterEffect))
+            using (var renderer = new JpegRenderer(filterEffect))
             {
-                var bitmap = await bitmapRenderer.RenderAsync();
-                var pixelArray = bitmap.Buffers[0].Buffer.ToArray();
-
-                Assert.AreEqual(96, pixelArray[0]);
-                Assert.AreEqual(128, pixelArray[1]);
-                Assert.AreEqual(193, pixelArray[2]);
-                Assert.AreEqual(255, pixelArray[3]);
+                var buffer = await renderer.RenderAsync();
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
     }

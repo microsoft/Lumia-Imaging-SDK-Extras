@@ -19,16 +19,11 @@
 * THE SOFTWARE.
 */
 
-using System.Diagnostics;
-using Windows.Storage;
 using CustomCx;
 using Lumia.Imaging.Compositing;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.UI;
 
 namespace Lumia.Imaging.Extras.Tests.Custom
 {
@@ -36,79 +31,71 @@ namespace Lumia.Imaging.Extras.Tests.Custom
     public class EffectGroupCxTests
     {
         [TestMethod]
-        public void EmptyEffectGroupCanBeCreated()
+        public void CreateEmptyEffectGroup()
         {
             new EmptyEffectGroup();
         }
 
         [TestMethod]
-        public async Task EmptyEffectGroupCanBeUsedInRendering()
+        public async Task RenderEmptyEffectGroup()
         {
-            using (var source = new ColorImageSource(new Size(100, 100), Color.FromArgb(255, 128, 128, 128)))
+            using (var source = KnownImages.MikikoLynn.ImageSource)
             using (var effectGroup = new EmptyEffectGroup(source))
-            using (var bitmapRenderer = new BitmapRenderer(effectGroup))
+            using (var renderer = new JpegRenderer(effectGroup))
             {
-                var bitmap = await bitmapRenderer.RenderAsync();
-                var pixelArray = bitmap.Buffers[0].Buffer.ToArray();
-
-                Assert.AreEqual(128, pixelArray[0]);
-                Assert.AreEqual(128, pixelArray[1]);
-                Assert.AreEqual(128, pixelArray[2]);
-                Assert.AreEqual(255, pixelArray[3]);
+                var buffer = await renderer.RenderAsync();
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
 
         [TestMethod]
-        public void HighpassEffectGroupCanBeCreated()
+        public void CreateHighpassEffectGroup()
         {
             new HighpassEffectGroup(10, true, 3);
         }
 
         [TestMethod]
-        public async Task HighpassEffectGroupRendered()
+        public async Task RenderHighpassEffectGroup()
         {
-            using (var source = await KnownImages.MikikoLynn.GetImageSourceAsync())
+            using (var source = KnownImages.MikikoLynn.ImageSource)
             using (var highpassEffect = new HighpassEffectGroup(8, false, 1) { Source = source })
             using (var renderer = new JpegRenderer(highpassEffect))
             {
                 var buffer = await renderer.RenderAsync();
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EffectGroupCxTests.HighpassEffectGroupRendered.jpg");
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
 
         [TestMethod]
-        public async Task HighpassEffectGroupRendered_Grayscale()
+        public async Task RenderHighpassEffectGroupWithGrayscaleEnabled()
         {
-            using (var source = await KnownImages.MikikoLynn.GetImageSourceAsync())
+            using (var source = KnownImages.MikikoLynn.ImageSource)
             using (var highpassEffect = new HighpassEffectGroup(8, true, 1) { Source = source })
             using (var renderer = new JpegRenderer(highpassEffect))
             {
                 var buffer = await renderer.RenderAsync();
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EffectGroupCxTests.HighpassEffectGroupRendered_Grayscale.jpg");
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
 
         [TestMethod]
-        public async Task HighpassEffectGroupAmplifiedEdges()
+        public async Task RenderHighpassEffectGroupAndAmplifyEdges()
         {
-            using (var source = await KnownImages.MikikoLynn.GetImageSourceAsync())
-            using (var highpassEffect = new HighpassEffectGroup(14,true,2) { Source = source })
+            using (var source = KnownImages.MikikoLynn.ImageSource)
+            using (var highpassEffect = new HighpassEffectGroup(14, true, 2) { Source = source })
             using (var sourceWithAmplifiedEdges = new BlendEffect(source, highpassEffect, BlendFunction.Hardlight, 0.4))
             using (var renderer = new JpegRenderer(sourceWithAmplifiedEdges))
             {
                 DiagnosticsReport.BeginProbe(sourceWithAmplifiedEdges);
-                
+
                 var buffer = await renderer.RenderAsync();
 
                 // This should hit the inline blending (fast) path, make sure it did.
                 var blendEffectReport = await DiagnosticsReport.EndProbeAsync(sourceWithAmplifiedEdges);
                 Assert.AreEqual(1, (int)blendEffectReport.Properties["inlineblend_count"]);
 
-                var originalBuffer = await FileIO.ReadBufferAsync(await KnownImages.MikikoLynn.GetFileAsync());
-                await FileUtilities.SaveToPicturesLibraryAsync(originalBuffer, "EffectGroupCxTests.HighpassEffectGroupAmplifiedEdges_Original.jpg");
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EffectGroupCxTests.HighpassEffectGroupAmplifiedEdges_Result.jpg");
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
     }
 }
-

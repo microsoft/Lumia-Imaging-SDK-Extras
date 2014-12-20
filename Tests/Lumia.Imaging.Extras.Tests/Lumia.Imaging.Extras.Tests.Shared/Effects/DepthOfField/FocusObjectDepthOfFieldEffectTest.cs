@@ -35,30 +35,30 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
         [TestMethod]
         public async Task RenderPreviewImage()
         {
-            using (var source = await KnownImages.Nurse.GetImageSourceAsync().ConfigureAwait(false))
-            using (var annotations = await KnownImages.NurseScribbles.GetImageSourceAsync().ConfigureAwait(false))
+            using (var source = KnownImages.Nurse.ImageSource)
+            using (var annotations = KnownImages.NurseScribbles.ImageSource)
             using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 255, 0), annotations))
             using (var effect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0.8), new Point(1, 0.8), 1.0, 1.0, DepthOfFieldQuality.Preview))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync().AsTask().ConfigureAwait(false);
 
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "FocusObjectDepthOfFieldEffectTest_Preview.jpg");
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
 
         [TestMethod]
         public async Task RenderFullQualityImage()
         {
-            using (var source = await KnownImages.Nurse.GetImageSourceAsync().ConfigureAwait(false))
-            using (var annotations = await KnownImages.NurseScribbles.GetImageSourceAsync().ConfigureAwait(false))
+            using (var source = KnownImages.Nurse.ImageSource)
+            using (var annotations = KnownImages.NurseScribbles.ImageSource)
             using (var segmenter = new InteractiveForegroundSegmenter(source, Color.FromArgb(255, 255, 255, 255), Color.FromArgb(255, 255, 255, 0), annotations))
             using (var effect = new FocusObjectDepthOfFieldEffect(source, segmenter, new Point(0, 0.8), new Point(1, 0.8), 1.0, 1.0, DepthOfFieldQuality.Full))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
 
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "FocusObjectDepthOfFieldEffectTest_Full.jpg");
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
     }

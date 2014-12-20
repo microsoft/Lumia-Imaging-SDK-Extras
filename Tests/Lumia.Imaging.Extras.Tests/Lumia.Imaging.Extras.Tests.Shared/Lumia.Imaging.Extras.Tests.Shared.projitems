@@ -19,7 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BufferExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DotVisualizationExtensionsTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FileUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImageResults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownImages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layers\AdjustmentLayerTest.cs" />
@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Layers\LayerStyleTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layers\LayerTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MaybeTaskTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestFrameworkHooks.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)TestImages\GuyScribbles.png" />

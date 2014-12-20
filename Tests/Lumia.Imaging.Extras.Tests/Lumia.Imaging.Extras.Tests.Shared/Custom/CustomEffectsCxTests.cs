@@ -22,10 +22,7 @@
 using CustomCx;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.UI;
 
 namespace Lumia.Imaging.Extras.Tests.Custom
 {
@@ -41,12 +38,12 @@ namespace Lumia.Imaging.Extras.Tests.Custom
         [TestMethod]
         public async Task RenderEmptyCustomEffect()
         {
-            using (var source = await KnownImages.MikikoLynn.GetImageSourceAsync())
+            using (var source = KnownImages.MikikoLynn.ImageSource)
             using (var customEffect = new EmptyCustomEffect(source))
             using (var renderer = new JpegRenderer(customEffect))
             {
                 var buffer = await renderer.RenderAsync();
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer);
+                ImageResults.Instance.SaveToPicturesLibrary(buffer);
             }
         }
 

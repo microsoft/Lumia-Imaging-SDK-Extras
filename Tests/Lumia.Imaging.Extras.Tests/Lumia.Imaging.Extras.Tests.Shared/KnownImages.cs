@@ -27,7 +27,7 @@ namespace Lumia.Imaging.Extras.Tests
 	{
 		static KnownImages()
 		{
-            MikikoLynn = new KnownImage(@"TestImages\WEB13_Mikiko_Lynn_155_small.jpg", new Size(1023, 1023));
+            MikikoLynn = new KnownImage(@"TestImages\WEB13_Mikiko_Lynn_155_small.jpg", new Size(1475, 983));
             Nurse = new KnownImage(@"TestImages\MSC10_JohnFrnds_003_cropped_modified.jpg", new Size(988, 651));
             NurseScribbles = new KnownImage(@"TestImages\GuyScribbles.png", new Size(988, 651));
 		}

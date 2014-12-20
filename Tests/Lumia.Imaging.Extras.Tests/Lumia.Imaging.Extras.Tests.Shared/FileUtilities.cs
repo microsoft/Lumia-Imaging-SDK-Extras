@@ -19,6 +19,7 @@
 * THE SOFTWARE.
 */
 
+using System.Runtime.CompilerServices;
 using System.Threading;
 #if WINDOWS_PHONE
 using System.Windows.Media.Imaging;
@@ -36,8 +37,13 @@ namespace Lumia.Imaging.Extras.Tests
 {
     public class FileUtilities
     {
-        public static async Task SaveToPicturesLibraryAsync(IBuffer bufImage, string fileName, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task SaveToPicturesLibraryAsync(IBuffer bufImage, [CallerMemberName] string fileName = "", CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (!Path.HasExtension(fileName))
+            {
+                fileName = Path.ChangeExtension(fileName, "jpg");
+            }
+
             var folder = await KnownFolders.PicturesLibrary.CreateFolderAsync("ImageVerificationExtras", CreationCollisionOption.OpenIfExists).AsTask(cancellationToken).ConfigureAwait(false);
             var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).AsTask(cancellationToken).ConfigureAwait(false);
             using (var stream = await file.OpenStreamForWriteAsync().ConfigureAwait(false))

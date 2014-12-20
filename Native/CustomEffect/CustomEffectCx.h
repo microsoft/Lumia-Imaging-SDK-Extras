@@ -125,6 +125,7 @@ namespace Lumia { namespace Imaging { namespace Extras {
 
 		virtual Windows::Storage::Streams::IBuffer^ ProvideSourceBuffer(Windows::Foundation::Size imageSize)
 		{
+			m_imageSize = imageSize;
 			const uint32 requiredLength = (uint32)imageSize.Width * (uint32)imageSize.Height * sizeof(uint32);
 			m_sourceBuffer.EnsureCapacity(requiredLength);
 			return m_sourceBuffer.GetBuffer();
@@ -154,7 +155,9 @@ namespace Lumia { namespace Imaging { namespace Extras {
 				(uint32)rect.Height
 			};
 
-			implementation->OnProcess(processParameters, m_sourceBuffer.GetData(), m_targetBuffer.GetData());
+			auto* targetBufferData = m_options & CustomEffectOption::InPlaceEffect ? m_sourceBuffer.GetData() : m_targetBuffer.GetData();
+
+			implementation->OnProcess(processParameters, m_sourceBuffer.GetData(), targetBufferData);
 		}
 
 #pragma endregion

@@ -33,58 +33,23 @@ namespace Lumia.Imaging.Extras.Tests.Custom
     public class CustomEffectsCxTests
     {
         [TestMethod]
-        public void EmptyCustomEffectCanBeCreated()
+        public void CreateEmptyCustomEffect()
         {
             new EmptyCustomEffect();
         }
 
-        /*      [TestMethod]
-              public void RgbGainCustomEffectCanBeCreated()
-              {
-                  new RgbGainCustomEffect();
-              } 
-      */
         [TestMethod]
-        public async Task EmptyCustomEffectCanBeUsedInRendering()
+        public async Task RenderEmptyCustomEffect()
         {
-
-            using (var source = new ColorImageSource(new Size(100, 100), Color.FromArgb(255, 128, 128, 128)))
-            using(            var customEffect = new EmptyCustomEffect(source))
-            using (var bitmapRenderer = new BitmapRenderer(customEffect))
+            using (var source = await KnownImages.MikikoLynn.GetImageSourceAsync())
+            using (var customEffect = new EmptyCustomEffect(source))
+            using (var renderer = new JpegRenderer(customEffect))
             {
-                var bitmap = await bitmapRenderer.RenderAsync();
-                var pixelArray = bitmap.Buffers[0].Buffer.ToArray();
-
-                Assert.AreEqual(128, pixelArray[0]);
-                Assert.AreEqual(128, pixelArray[1]);
-                Assert.AreEqual(128, pixelArray[2]);
-                Assert.AreEqual(255, pixelArray[3]);
+                var buffer = await renderer.RenderAsync();
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer);
             }
         }
 
-        /*    [TestMethod]
-            public async Task RgbGainCustomEffectCanBeUsedInRendering()
-            {
-                var CustomEffect = new RgbGainCustomEffect()
-                {
-                    RedLevel = 1.5f,
-                    GreenLevel = 1.0f,
-                    BlueLevel = 0.75f
-                };
-
-                using (var source = new ColorImageSource(new Size(100, 100), Color.FromArgb(255, 128, 128, 128)))
-                using (var filterEffect = new FilterEffect(source) { Filters = new[] { CustomEffect } })
-                using (var bitmapRenderer = new BitmapRenderer(filterEffect))
-                {
-                    var bitmap = await bitmapRenderer.RenderAsync();
-                    var pixelArray = bitmap.Buffers[0].Buffer.ToArray();
-
-                    Assert.AreEqual(96, pixelArray[0]);
-                    Assert.AreEqual(128, pixelArray[1]);
-                    Assert.AreEqual(193, pixelArray[2]);
-                    Assert.AreEqual(255, pixelArray[3]);
-                }
-            }*/
     }
 }
 

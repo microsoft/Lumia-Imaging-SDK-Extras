@@ -19,12 +19,14 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging.Extras.Effects.DepthOfField;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Lumia.Imaging;
+using Lumia.Imaging.Extras.Effects.DepthOfField;
 using Windows.Foundation;
+using System.Runtime.CompilerServices;
+using Windows.UI;
 
 namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 {
@@ -86,14 +88,34 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
 
         private static async Task RenderEffect(FocusBand focusBand, DepthOfFieldQuality quality, [CallerMemberName] string testName = "")
         {
-            using (var source = KnownImages.Nurse.ImageSource)
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
             using (var effect = new LensTiltDepthOfFieldEffect(source, focusBand, 1.0, 1.0, quality))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
 
-                ImageResults.Instance.SaveToPicturesLibrary(buffer, testName);
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "LensTiltDepthOfFieldEffectTest_" + testName + ".jpg");
             }
+        }
+
+        [TestMethod]
+        public async Task RenderWithFullFocusAreaSuccedes()
+        {
+            var verticalFullBand = new FocusBand(new Point(0.0, 0.5), new Point(1.0, 0.5));
+            await RenderEffect(verticalFullBand, DepthOfFieldQuality.Full);
+
+            var horizontalFullBand = new FocusBand(new Point(0.5, 0.0), new Point(0.5, 1.0));
+            await RenderEffect(horizontalFullBand, DepthOfFieldQuality.Full);
+        }
+
+        [TestMethod]
+        public async Task RenderWithZeroWidthFocusAreaSuccedes()
+        {
+            var verticalZeroBand = new FocusBand(new Point(0.3, 0.5), new Point(0.3, 0.5));
+            await RenderEffect(verticalZeroBand, DepthOfFieldQuality.Full);
+
+            var horizontalZeroBand = new FocusBand(new Point(0.5, 0.7), new Point(0.5, 0.7));
+            await RenderEffect(horizontalZeroBand, DepthOfFieldQuality.Full);
         }
     }
 }

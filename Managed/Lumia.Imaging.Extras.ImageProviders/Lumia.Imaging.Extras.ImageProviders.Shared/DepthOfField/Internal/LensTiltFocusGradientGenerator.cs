@@ -52,7 +52,7 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 			var lineFunction = GradientLine.CreateFunction(band);
 
 			SetGradientPoints(gradient, lineFunction);
-			SetGradientStops(gradient, band, sourceSize, edge1KernelGenerator, edge2KernelGenerator, applySmallBlurFocusArea);
+            SetGradientStops(gradient, band, sourceSize, edge1KernelGenerator, edge2KernelGenerator, applySmallBlurFocusArea);
 
 			return gradient;
 		}
@@ -73,20 +73,28 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 			var focusBandEdge2Pixels = new Point(focusBand.Edge2.X * sourceSize.Width, focusBand.Edge2.Y * sourceSize.Height);
 
 			var focusBandWidth = Math.Abs(blurArea1FirstOffset - blurArea2FirstOffset);
+            var focusBandWidthPixels = Distance(focusBandEdge1Pixels, focusBandEdge2Pixels);
 
-			var focusBandWidthPixels = Distance(focusBandEdge1Pixels, focusBandEdge2Pixels);
-
-			var scaleFactor = focusBandWidthPixels > 0 ? focusBandWidth / focusBandWidthPixels : 1.0;
-
-			var blurAreaWidthPixels = (sourceSize.Height - focusBandWidthPixels) / 2 * 0.9;
-			
-            if (blurAreaWidthPixels < 1.0)
+            double blurAreaWidth;
+            if (focusBandWidthPixels > 0)
             {
-                gradient.Stops = new[] { new GradientStop() { Offset = 0.5, Color = Color.FromArgb(255, 0, 0, 0) } };
-                return;
-            }
+                var scaleFactor = focusBandWidth / focusBandWidthPixels;
 
-            var blurAreaWidth = blurAreaWidthPixels * scaleFactor;
+                var blurAreaWidthPixels = (sourceSize.Height - focusBandWidthPixels) / 2 * 0.9;
+
+                if (blurAreaWidthPixels < 1.0)
+                {
+                    gradient.Stops = new[] { new GradientStop() { Offset = 0.5, Color = Color.FromArgb(255, 0, 0, 0) } };
+                    return;
+                }
+
+                blurAreaWidth = blurAreaWidthPixels * scaleFactor;
+            }
+            else
+            {
+                blurAreaWidth = 0.5;
+                applySmallBlurFocusArea = true;
+            }
 
 			double blurArea1LastOffset;
 			double blurArea2LastOffset;

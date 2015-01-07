@@ -19,10 +19,11 @@
 * THE SOFTWARE.
 */
 
-using Lumia.Imaging.Extras.Effects.DepthOfField;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Lumia.Imaging;
+using Lumia.Imaging.Extras.Effects.DepthOfField;
 using Windows.Foundation;
 
 namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
@@ -33,26 +34,52 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
         [TestMethod]
         public async Task RenderPreviewImage()
         {
-            using (var source = KnownImages.Nurse.ImageSource)
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Preview))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
                 
-                ImageResults.Instance.SaveToPicturesLibrary(buffer);
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_Preview.jpg");
             }
         }
 
         [TestMethod]
         public async Task RenderFullQualityImage()
         {
-            using (var source = KnownImages.Nurse.ImageSource)
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Full))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
 
-                ImageResults.Instance.SaveToPicturesLibrary(buffer);
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_Full.jpg");
+            }
+        }
+
+        [TestMethod]
+        public async Task RenderWithFullFocusAreaSuccedes()
+        {
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
+            using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(1.0, 1.0)), 1.0, DepthOfFieldQuality.Full))
+            using (var renderer = new JpegRenderer(effect))
+            {
+                var buffer = await renderer.RenderAsync();
+
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_FullFocusArea.jpg");
+            }
+        }
+
+        [TestMethod]
+        public async Task RenderWithZeroWidthFocusAreaSuccedes()
+        {
+            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
+            using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.0, 0.0)), 1.0, DepthOfFieldQuality.Full))
+            using (var renderer = new JpegRenderer(effect))
+            {
+                var buffer = await renderer.RenderAsync();
+
+                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_ZeroWidthFocusArea.jpg");
             }
         }
     }

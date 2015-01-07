@@ -19,6 +19,9 @@
 * THE SOFTWARE.
 */
 
+using Lumia.Imaging;
+using Lumia.Imaging.Adjustments;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI;
@@ -30,7 +33,6 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 	/// </summary>
 	public class EllipticFocusGradientGenerator : FocusGradientGenerator
 	{
-
 		private static readonly double FocusToBlurTransitionWidth = 0.25;
 
 		/// <summary>
@@ -48,19 +50,26 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 				return null;
 			}
 
-			EllipseRadius maxBlurRadius;
+			EllipseRadius maxBlurRadius = null;
 
-			bool widthGtHight = ellipse.Radius.X > ellipse.Radius.Y;
-			double factor = 0.9;
-
-			if (widthGtHight)
-			{
-				maxBlurRadius = new EllipseRadius(factor, factor * ellipse.Radius.Y / ellipse.Radius.X);
-			}
-			else
-			{
-				maxBlurRadius = new EllipseRadius(factor * ellipse.Radius.X / ellipse.Radius.Y, factor);
-			}
+            if ((ellipse.Radius.X < minDiffBetweenStops) && (ellipse.Radius.Y < minDiffBetweenStops))
+            {
+                maxBlurRadius = new EllipseRadius(minDiffBetweenStops, minDiffBetweenStops);
+            }
+            else
+            {
+                double factor = 0.9;
+                bool widthGtHight = ellipse.Radius.X > ellipse.Radius.Y;
+                
+                if (widthGtHight)
+                {
+                    maxBlurRadius = new EllipseRadius(factor, factor * ellipse.Radius.Y / ellipse.Radius.X);
+                }
+                else
+                {
+                    maxBlurRadius = new EllipseRadius(factor * ellipse.Radius.X / ellipse.Radius.Y, factor);
+                }
+            }
 
 			var gradient = new RadialGradient(ellipse.Center, maxBlurRadius);
 			SetGradientStops(gradient, ellipse, maxBlurRadius, kernelGenerator);
@@ -70,16 +79,24 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 
 		private static void SetGradientStops(RadialGradient gradient, FocusEllipse ellipse, EllipseRadius maxBlurRadius, KernelGenerator kernelGenerator)
 		{
-
 			var stops = new List<GradientStop>();
 
-			double firstStopOffset = ellipse.Radius.X / maxBlurRadius.X;
+            double firstStopOffset;
+
+            if (maxBlurRadius.X > minDiffBetweenStops)
+            {
+                firstStopOffset = ellipse.Radius.X / maxBlurRadius.X;
+                
+                //Add the focus area at the center of the ellipse.
+                stops.Add(new GradientStop() { Color = Color.FromArgb(255, 0, 0, 0), Offset = 0 });
+                stops.Add(new GradientStop() { Color = Color.FromArgb(255, 0, 0, 0), Offset = firstStopOffset });
+            }
+            else
+            {
+                firstStopOffset = minDiffBetweenStops;
+            }
 
 			double sumOfBandWidths = kernelGenerator.GetKernelBands().Select(band => band.Width).Sum();
-
-			stops.Add(new GradientStop() { Color = Color.FromArgb(255, 0, 0, 0), Offset = 0 });
-			stops.Add(new GradientStop() { Color = Color.FromArgb(255, 0, 0, 0), Offset = firstStopOffset });
-
 			var currentStopOffset = firstStopOffset + minDiffBetweenStops;
 
 			var kernelBands = kernelGenerator.GetKernelBands();

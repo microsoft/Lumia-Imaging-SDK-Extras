@@ -79,7 +79,14 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 			var scaleFactor = focusBandWidthPixels > 0 ? focusBandWidth / focusBandWidthPixels : 1.0;
 
 			var blurAreaWidthPixels = (sourceSize.Height - focusBandWidthPixels) / 2 * 0.9;
-			var blurAreaWidth = blurAreaWidthPixels * scaleFactor;
+			
+            if (blurAreaWidthPixels < 1.0)
+            {
+                gradient.Stops = new[] { new GradientStop() { Offset = 0.5, Color = Color.FromArgb(255, 0, 0, 0) } };
+                return;
+            }
+
+            var blurAreaWidth = blurAreaWidthPixels * scaleFactor;
 
 			double blurArea1LastOffset;
 			double blurArea2LastOffset;

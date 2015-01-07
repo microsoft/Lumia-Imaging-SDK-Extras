@@ -27,7 +27,7 @@ namespace Lumia.Imaging.Extras.Effects.DepthOfField.Internal
 {
 	public abstract class FocusGradientGenerator
 	{
-		protected const double minDiffBetweenStops = 1e-7;
+		protected const double minDiffBetweenStops = 1e-5;
 		protected const double transitionBandFactor = 0.5;
 
 		protected static List<GradientStop> EnsureMinDiffBetweenPoints(List<GradientStop> stops)

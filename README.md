@@ -40,6 +40,9 @@ A noise generator image source. Internally uses a ColorImageSource and a NoiseFi
 ####HighpassEffect 
 A "highpass" effect, similar to familiar ones in photo editing apps. Uses EffectGroupAdapter to form an "effect group".
 
+####RepeatedTileImageSource
+A source generator that repeats a given tile in both x and y directions until it reaches the desired size. For example it can be used to create seamlessly repeating backgrounds such as seen in some games. 
+
 ####DepthofField
 A set of high-level scenarios showing how to set up a "DoF" effect.
 

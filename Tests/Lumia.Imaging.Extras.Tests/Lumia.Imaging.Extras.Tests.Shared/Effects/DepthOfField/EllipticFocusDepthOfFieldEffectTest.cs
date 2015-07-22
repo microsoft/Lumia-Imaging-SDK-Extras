@@ -34,52 +34,52 @@ namespace Lumia.Imaging.Extras.Tests.Shared.Effects.DepthOfField
         [TestMethod]
         public async Task RenderPreviewImage()
         {
-            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
+			using (var source = KnownImages.Nurse.ImageSource)
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Preview))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
-                
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_Preview.jpg");
+
+				ImageResults.Instance.SaveToPicturesLibrary(buffer, "EllipticFocusDepthOfFieldEffectTest_Preview.jpg");
             }
         }
 
         [TestMethod]
         public async Task RenderFullQualityImage()
         {
-            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
+			using (var source = KnownImages.Nurse.ImageSource)
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.2, 0.2)), 1.0, DepthOfFieldQuality.Full))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
 
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_Full.jpg");
+				ImageResults.Instance.SaveToPicturesLibrary(buffer, "EllipticFocusDepthOfFieldEffectTest_Full.jpg");
             }
         }
 
         [TestMethod]
         public async Task RenderWithFullFocusAreaSuccedes()
         {
-            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
+			using (var source = KnownImages.Nurse.ImageSource)
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(1.0, 1.0)), 1.0, DepthOfFieldQuality.Full))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
 
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_FullFocusArea.jpg");
+				ImageResults.Instance.SaveToPicturesLibrary(buffer, "EllipticFocusDepthOfFieldEffectTest_FullFocusArea.jpg");
             }
         }
 
         [TestMethod]
         public async Task RenderWithZeroWidthFocusAreaSuccedes()
         {
-            using (var source = await KnownImages.Nurse.GetImageSourceAsync())
+			using (var source = KnownImages.Nurse.ImageSource)
             using (var effect = new EllipticFocusDepthOfFieldEffect(source, new FocusEllipse(new Point(0.5, 0.3), new EllipseRadius(0.0, 0.0)), 1.0, DepthOfFieldQuality.Full))
             using (var renderer = new JpegRenderer(effect))
             {
                 var buffer = await renderer.RenderAsync();
 
-                await FileUtilities.SaveToPicturesLibraryAsync(buffer, "EllipticFocusDepthOfFieldEffectTest_ZeroWidthFocusArea.jpg");
+				ImageResults.Instance.SaveToPicturesLibrary(buffer, "EllipticFocusDepthOfFieldEffectTest_ZeroWidthFocusArea.jpg");
             }
         }
     }

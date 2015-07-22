@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BitmapExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\BufferExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DotVisualizationExtensionsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImageProviders\RepeatedTileImageSourceTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageResults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownImages.cs" />

@@ -125,7 +125,7 @@ namespace Lumia.Imaging.Extras.Tests.Layers
             var pixels = renderedBitmap.Buffers[0].Buffer.ToArray();
             Assert.AreEqual(135, pixels[0]);
             Assert.AreEqual(143, pixels[1]);
-            Assert.AreEqual(160, pixels[2]);
+            Assert.AreEqual(159, pixels[2]);
             Assert.AreEqual(255, pixels[3]);
         }
 
@@ -147,7 +147,7 @@ namespace Lumia.Imaging.Extras.Tests.Layers
             var pixels = renderedBitmap.Buffers[0].Buffer.ToArray();
             Assert.AreEqual(135, pixels[0]);
             Assert.AreEqual(143, pixels[1]);
-            Assert.AreEqual(160, pixels[2]);
+            Assert.AreEqual(159, pixels[2]);
             Assert.AreEqual(255, pixels[3]);
         }
 
@@ -168,7 +168,7 @@ namespace Lumia.Imaging.Extras.Tests.Layers
             var pixels = bitmap.Buffers[0].Buffer.ToArray();
             Assert.AreEqual(135, pixels[0]);
             Assert.AreEqual(143, pixels[1]);
-            Assert.AreEqual(160, pixels[2]);
+            Assert.AreEqual(159, pixels[2]);
             Assert.AreEqual(255, pixels[3]);
         }
 
